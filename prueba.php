@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Iniciar Sesión de prueba</title>
-    <title>Iniciar Sesión de prueba</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Agrega tu archivo CSS si lo tienes -->
 </head>
 <body>
-    <h1>Iniciar Sesión como pendejo</h1>
-    <form method="post" action="procesar_login.php">
-        <label for="usuario">Usuario:</label>
-        <input type="text" name="usuario" id="usuario" required><br>
-
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" id="contrasena" required><br>
-
-        <input type="submit" value="Iniciar Sesión">
-    </form>
-
-    <p>O inicia sesión con tu cuenta de Google:</p>
-    <a href="auth_google.php">Iniciar sesión con Google</a>
+    <div class="login-container">
+        <h1>Iniciar Sesión</h1>
+        <form action="tu_script_de_autenticacion.php" method="POST">
+            <div class="form-group">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
 </body>
 </html>
