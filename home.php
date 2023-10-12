@@ -11,8 +11,9 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="cursos.php">Cursos</a></li>
-                <li><a href="contacto.php">Contacto</a></li>
+                <li><a href="estudiantes.php">Estudiantes</a></li>
+                <li><a href="formato.php">Planes de trabajo</a></li>
+                <li><a href="informes.php">Informes</a></li>
             </ul>
         </nav>
     </header>
