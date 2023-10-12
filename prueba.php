@@ -5,7 +5,7 @@
     <title>Iniciar Sesión de prueba</title>
 </head>
 <body>
-    <h1>Iniciar Sesión</h1>
+    <h1>Iniciar Sesión como pendejo</h1>
     <form method="post" action="procesar_login.php">
         <label for="usuario">Usuario:</label>
         <input type="text" name="usuario" id="usuario" required><br>
