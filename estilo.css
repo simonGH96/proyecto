@@ -1,0 +1,70 @@
+body {
+    background-color: white; /* Fondo blanco */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.login-container {
+    background-color: #ff0000; /* Fondo rojo */
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: white; /* Texto en blanco */
+}
+
+form {
+    margin-top: 20px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+label {
+    color: white; /* Texto en blanco */
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    background-color: white; /* Fondo blanco */
+    color: #ff0000; /* Texto rojo */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ccc; /* Cambiar a gris claro al pasar el ratón */
+}
+
+/* Estilos para el logo y la imagen de usuario (ajusta los selectores según sea necesario) */
+.logo {
+    width: 100px;
+    height: 100px;
+    /* Agrega propiedades de estilo específicas para tu logo aquí */
+}
+
+.user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Para hacer que la imagen de usuario sea circular */
+    /* Agrega propiedades de estilo específicas para la imagen de usuario aquí */
+}
