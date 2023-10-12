@@ -1,22 +1,27 @@
 body {
-    background-color: white; /* Fondo blanco */
+    background-color: #f2f2f2; /* Cambié el fondo a un gris más suave */
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .login-container {
-    background-color: #ff0000; /* Fondo rojo */
+    background-color: #ffffff; /* Fondo blanco */
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px; /* Aumenté el radio del borde */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-    color: white; /* Texto en blanco */
+    color: #000000; /* Texto rojo */
+    font-size: 24px; /* Tamaño de fuente aumentado */
 }
 
 form {
@@ -24,25 +29,27 @@ form {
 }
 
 .form-group {
-    text-align: left;
+    text-align: left; /* Alinear el texto a la izquierda para una mejor legibilidad */
     margin-bottom: 15px;
 }
 
 label {
-    color: white; /* Texto en blanco */
+    color: #000000; /* Texto rojo */
     display: block;
+    font-weight: bold; /* Hacer el texto en negrita */
 }
 
 input {
-    width: 100%;
+    width: 86%; /* Ancho completo */
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #000000; /* Borde rojo */
     border-radius: 3px;
+    outline: none; /* Eliminar el resaltado en el enfoque */
 }
 
 button {
-    background-color: white; /* Fondo blanco */
-    color: #ff0000; /* Texto rojo */
+    background-color: #C51E1E; /* Fondo rojo */
+    color: #ffffff; /* Texto blanco */
     padding: 10px 20px;
     border: none;
     border-radius: 3px;
@@ -52,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: #ccc; /* Cambiar a gris claro al pasar el ratón */
+    background-color: #ff5050; /* Cambiar a un tono de rojo más claro al pasar el ratón */
 }
 
 /* Estilos para el logo y la imagen de usuario (ajusta los selectores según sea necesario) */
