@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($username === $valid_username && $password === $valid_password) {
         // Autenticación exitosa, redirige a la página de bienvenida o el panel de control
-        header("Location: bienvenida.php"); // Reemplaza con la URL correcta
+        header("Location: home.php"); // Reemplaza con la URL correcta
         exit();
     } else {
         // Autenticación fallida, muestra un mensaje de error
