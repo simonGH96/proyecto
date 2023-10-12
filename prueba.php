@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Iniciar Sesión de prueba</title>
+    <title>Iniciar Sesión de prueba</title>
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
