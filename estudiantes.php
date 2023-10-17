@@ -12,8 +12,9 @@
     
     <main>
         <button id="home-button">Volver al Inicio</button>
-        <button id="add-student-button">Agregar Estudiante</button>
-
+        <a href="agregar_estudiante.html">
+        <button id="agregar_estudiante">Agregar Estudiante</button>
+        </a>
         <table class="student-table">
             <thead>
                 <tr>
