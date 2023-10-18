@@ -3,21 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Página Educativa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        /* Estilo para el menú desplegable */
+        #lista {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            list-style: none;
+            padding: 0;
+        }
+
+        #lista li {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Agregar un efecto de sombra al menú desplegable */
+        #lista {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const logoutButton = document.getElementById('logout-button');
+            const lista = document.getElementById('lista');
+
+            // Mostrar/ocultar el menú desplegable al hacer clic en el botón
+            logoutButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (lista.style.display === 'block') {
+                    lista.style.display = 'none';
+                } else {
+                    lista.style.display = 'block';
+                }
+            });
+        });
+    </script>
 <body>
     <header>
-        <h1>Bienvenido a nuestra Página Educativa</h1>
+        <h1>Consejerías Universidad Distrital FJC</h1>
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="estudiantes.php">Estudiantes</a></li>
-                <li><a href="formato.php">Planes de trabajo</a></li>
-                <li><a href="informes.php">Informes</a></li>
+                <li><a href="../estudiantes.php">Estudiantes</a></li>
+                <li><a href="../formato.php">Planes de trabajo</a></li>
+                <li><a href="../informes.php">Informes</a></li>
             </ul>
+
         </nav>
     </header>
+    <ul id="user-menu">
+        <li><a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a></li>
+    </ul>
     
+    <ul id="lista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+        <li>Elemento 4</li>
+    </ul>
+
     <main>
         <section class="intro">
             <h2>¿Quiénes somos?</h2>
