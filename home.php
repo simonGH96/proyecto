@@ -21,22 +21,24 @@
     <main>
         <section class="intro">
             <h2>¿Quiénes somos?</h2>
-            <p>Somos una plataforma educativa en línea comprometida en brindar educación de alta calidad a estudiantes de todo el mundo. Explora nuestros cursos y descubre un mundo de conocimiento.</p>
+            <p>Somos la consejería académica de la Universidad Distrital, encargados del proceso permanente y continuo de acompañamiento a sus estudiantes. </br>
+            Estas inician en el momento en que el estudiante se matricula en un proyecto curricular y se sostiene durante el tiempo que el estudiante permanezca en la universidad. </br>
+            </br></p>
         </section>
         
         <section class="featured-courses">
-            <h2>Cursos Destacados</h2>
+            <h2> Información relevante</h2>
             <div class="course">
-                <img src="curso1.jpg" alt="Curso 1">
-                <h3>Curso 1</h3>
-                <p>Descripción del Curso 1.</p>
-                <a href="curso1.php">Más información</a>
+                <img src="imagen-noticia.jpg" alt="Curso 1">
+                <h3>Evento</h3>
+                <p>Evento de socialización de la guia del docente consejero.</p>
+                <a href="https://viceacad.udistrital.edu.co/noticia/guia-para-el-docente-consejero-una-oportunidad-de-fortalecer-las-consejerias-en-la-ud">Más información</a>
             </div>
             <div class="course">
-                <img src="curso2.jpg" alt="Curso 2">
-                <h3>Curso 2</h3>
-                <p>Descripción del Curso 2.</p>
-                <a href="curso2.php">Más información</a>
+                <img src="resolucion.jpg" alt="Curso 2">
+                <h3>Resolución que define las consejerias</h3>
+                <p>Tiene por objeto, elevar el desarrollo académico y humano de los estudiantes, de manera que permita identificar las diversas situaciones que puede afrontar un estudiante en el transcurso de su formación universitaria, bien sean académicas, socioeconómicas, de aprendizaje, emocionales, etc.</p>
+                <a href="https://sgral.udistrital.edu.co/xdata/ca/res_2011-040.pdf">Más información</a>
             </div>
         </section>
     </main>

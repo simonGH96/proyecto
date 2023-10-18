@@ -39,7 +39,6 @@
             <canvas id="performance-chart"></canvas>
         </div>
     </main>
-
     <footer>
         <p>Pie de Página - © 2023 Desempeño de Estudiantes</p>
     </footer>

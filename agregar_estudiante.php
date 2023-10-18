@@ -41,7 +41,8 @@
 
         // Ejecuta la consulta SQL para insertar el registro en la base de datos
         if ($stmt->execute()) {
-            echo "Estudiante agregado exitosamente.";
+            echo '<script>alert("Estudiante creado exitosamente.");</script>';
+        echo '<script>window.location.href = "estudiantes.php";</script>'; 
         } else {
             echo "Error al agregar el estudiante: " . $stmt->error;
         }

@@ -11,68 +11,62 @@
     </header>
     
     <main>
-        <button id="home-button">Volver al Inicio</button>
+        <a href="home.php">
+        <button id="home-button">Volver al Inicio</button></a>
         <a href="agregar_estudiante.html">
         <button id="agregar_estudiante">Agregar Estudiante</button>
         </a>
         <table class="student-table">
             <thead>
                 <tr>
+                    <th>Codigo</th>
                     <th>Nombre</th>
-                    <th>Edad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Estudiante 1</td>
-                    <td>20</td>
-                    <td>
-                        <button class="edit-button">Editar</button>
-                        <button class="delete-button">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Estudiante 2</td>
-                    <td>22</td>
-                    <td>
-                        <button class="edit-button">Editar</button>
-                        <button class="delete-button">Eliminar</button>
-                    </td>
-                </tr>
+                <?php
+                // Establecer la conexión a la base de datos
+                $conexion = mysqli_connect("localhost", "root", "", "proyecto_consejerias");
+
+                if (!$conexion) {
+                    die("La conexión a la base de datos ha fallado: " . mysqli_connect_error());
+                }
+
+                // Consulta SQL para obtener los datos del estudiante
+                $sql = "SELECT codigo, nombre FROM estudiante ";
+                $resultado = mysqli_query($conexion, $sql);
+
+                if (mysqli_num_rows($resultado) > 0) {
+                    while ($fila = mysqli_fetch_assoc($resultado)) {
+                        echo "<tr>";
+                        echo "<td>" . $fila["codigo"] . "</td>";
+                        echo "<td>" . $fila["nombre"] . "</td>";
+                        echo "<td>";
+                        echo '<a href="editar_estudiante.php?codigo=' . $fila["codigo"] . '"><button class="edit-button">Editar</button></a>';
+                        echo '<form method="POST" action="eliminar_estudiante.php">';
+                        echo '<input type="hidden" name="estudiante_id" value="' . $fila["codigo"] . '">';
+                        echo '<button class="delete-button" type="submit">Eliminar</button>';
+                        echo '</form>';
+                        echo "</td>";
+                        echo "</tr>";
+                    }                    
+                } else {
+                    echo "<tr><td colspan='3'>No se encontraron estudiantes</td></tr>";
+                }
+
+                // Cerrar la conexión a la base de datos
+                mysqli_close($conexion);
+                ?>
             </tbody>
         </table>
-
-        <button id="home-button">Volver al Inicio</button>
+        <a href="home.php">
+        <button id="home-button">Volver al Inicio</button></a>
     </main>
 
     <footer>
         <p>Pie de Página - © 2023 Gestión de Estudiantes</p>
     </footer>
-
-    <!-- Script JavaScript para manejar la interacción de los botones -->
-    <script>
-        document.getElementById('add-student-button').addEventListener('click', function () {
-            // Aquí puedes mostrar un formulario para agregar un estudiante
-        });
-
-        let editButtons = document.querySelectorAll('.edit-button');
-        for (let i = 0; i < editButtons.length; i++) {
-            editButtons[i].addEventListener('click', function () {
-                // Aquí puedes mostrar un formulario para editar el estudiante correspondiente
-            });
-        }
-
-        let deleteButtons = document.querySelectorAll('.delete-button');
-        for (let i = 0; i < deleteButtons.length; i++) {
-            deleteButtons[i].addEventListener('click', function () {
-                // Aquí puedes eliminar el estudiante correspondiente de la base de datos y recargar la página
-            });
-        }
-
-        document.getElementById('home-button').addEventListener('click', function () {
-            window.location.href = 'home.php'; // Reemplaza 'home.php' con la URL de tu página de inicio
-        });
-    </script>
 </body>
 </html>
+

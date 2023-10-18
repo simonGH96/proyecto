@@ -40,6 +40,8 @@
                 <input type="submit" value="Subir Documento">
             </div>
         </form>
+        <a href="home.php">
+        <button id="home-button">Volver al Inicio</button></a>
     </main>
 
     <footer>
