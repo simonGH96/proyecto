@@ -8,7 +8,7 @@
 <body>
     <header>
         <h1>Desempeño de Estudiantes</h1>
-        <a href="home.php" class="back-to-top">Volver al Inicio</a>
+        <a href="inicio/home.php" class="back-to-top">Volver al Inicio</a>
     </header>
     
     <main>

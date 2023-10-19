@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Estudiantes</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="inicio/styles.css">
 </head>
 <body>
     <header>
@@ -11,7 +11,7 @@
     </header>
     
     <main>
-        <a href="home.php">
+        <a href="inicio/home.php">
         <button id="home-button">Volver al Inicio</button></a>
         <a href="agregar_estudiante.html">
         <button id="agregar_estudiante">Agregar Estudiante</button>
@@ -60,7 +60,7 @@
                 ?>
             </tbody>
         </table>
-        <a href="home.php">
+        <a href="inicio/home.php">
         <button id="home-button">Volver al Inicio</button></a>
     </main>
 

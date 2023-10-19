@@ -5,31 +5,21 @@
     <title>Página Educativa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        /* Estilo para el menú desplegable */
-        #lista {
-            display: none;
-            position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            list-style: none;
-            padding: 0;
-        }
-
-        #lista li {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        /* Agregar un efecto de sombra al menú desplegable */
-        #lista {
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+   
+ 
 </head>
 <body>
     <header>
+        <ul id="user-menu">
+            <a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a>
+            <ul id="lista">
+            <li id="logout-option">Salir</li>
+        </ul>
+    
+        </ul>
+        
         <h1>Consejerías Universidad Distrital FJC</h1>
+        
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
@@ -37,21 +27,21 @@
                 <li><a href="../formato.php">Planes de trabajo</a></li>
                 <li><a href="../informes.php">Informes</a></li>
             </ul>
-            <ul id="user-menu">
-                <li><a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a></li>
-            </ul>
+            
             </nav>
+            
     </header>
     
-    <ul id="lista">
-        <li>Salir</li>
-    </ul>
     
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const logoutButton = document.getElementById('logout-button');
-            const lista = document.getElementById('lista');
+            const logoutOption = document.getElementById('logout-option');
 
+            // Función para redirigir al usuario a "login.html"
+            function redirectToLogin() {
+                window.location.href = 'login.html';
+            }
             // Mostrar/ocultar el menú desplegable al hacer clic en el botón
             logoutButton.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -61,6 +51,8 @@
                     lista.style.display = 'block';
                 }
             });
+            // Redirigir al hacer clic en "Salir"
+            logoutOption.addEventListener('click', redirectToLogin);
         });
     </script>
     <main>

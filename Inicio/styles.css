@@ -91,12 +91,38 @@ a:hover {
   color: #ff6600;
 }
 #logout-button {
+    display: block; /* Hacer que el enlace ocupe todo el ancho del menú */
+    padding: 10px; /* Añadir relleno para un área de clic más grande */
   color: #000; /* Cambiar el color del ícono a negro (ajústalo según tus preferencias) */
   font-size: 24px; /* Aumenta el tamaño del ícono a 24px (ajústalo según tus preferencias) */
-  vertical-align: middle; /* Alinea verticalmente el ícono al centro */
 }
 
 #logout-button:hover {
   cursor: pointer;
   color: rgb(38, 0, 255); /* Cambiar el color del ícono cuando se pasa el cursor sobre él (ajústalo según tus preferencias) */
+}
+ /* Estilo para el menú de usuario */
+ #user-menu {
+    position: absolute;
+    right: 50px; /* Coloca el menú a 50px del lado derecho */
+    top: 0; /* Coloca el menú en la parte superior */
+}
+ /* Estilo para el menú desplegable */
+ #lista {
+    display: none;
+    position: absolute;
+    background-color: #20188f;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding: 0;
+}
+
+#lista li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Agregar un efecto de sombra al menú desplegable */
+#lista {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
