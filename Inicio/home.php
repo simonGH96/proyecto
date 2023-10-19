@@ -27,7 +27,27 @@
         }
     </style>
 </head>
-<script>
+<body>
+    <header>
+        <h1>Consejerías Universidad Distrital FJC</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="../estudiantes.php">Estudiantes</a></li>
+                <li><a href="../formato.php">Planes de trabajo</a></li>
+                <li><a href="../informes.php">Informes</a></li>
+            </ul>
+            <ul id="user-menu">
+                <li><a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+            </nav>
+    </header>
+    
+    <ul id="lista">
+        <li>Salir</li>
+    </ul>
+    
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const logoutButton = document.getElementById('logout-button');
             const lista = document.getElementById('lista');
@@ -43,30 +63,6 @@
             });
         });
     </script>
-<body>
-    <header>
-        <h1>Consejerías Universidad Distrital FJC</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="../estudiantes.php">Estudiantes</a></li>
-                <li><a href="../formato.php">Planes de trabajo</a></li>
-                <li><a href="../informes.php">Informes</a></li>
-            </ul>
-
-        </nav>
-    </header>
-    <ul id="user-menu">
-        <li><a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a></li>
-    </ul>
-    
-    <ul id="lista">
-        <li>Elemento 1</li>
-        <li>Elemento 2</li>
-        <li>Elemento 3</li>
-        <li>Elemento 4</li>
-    </ul>
-
     <main>
         <section class="intro">
             <h2>¿Quiénes somos?</h2>

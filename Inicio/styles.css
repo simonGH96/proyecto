@@ -91,7 +91,6 @@ a:hover {
   color: #ff6600;
 }
 #logout-button {
-  float: right; /* Alinea el botón a la derecha */
   color: #000; /* Cambiar el color del ícono a negro (ajústalo según tus preferencias) */
   font-size: 24px; /* Aumenta el tamaño del ícono a 24px (ajústalo según tus preferencias) */
   vertical-align: middle; /* Alinea verticalmente el ícono al centro */
@@ -99,6 +98,5 @@ a:hover {
 
 #logout-button:hover {
   cursor: pointer;
-  color: #f00; /* Cambiar el color del ícono cuando se pasa el cursor sobre él (ajústalo según tus preferencias) */
+  color: rgb(38, 0, 255); /* Cambiar el color del ícono cuando se pasa el cursor sobre él (ajústalo según tus preferencias) */
 }
-
