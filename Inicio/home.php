@@ -18,7 +18,7 @@
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
-                <li><a href="../formato.php">Planes de trabajo</a></li>
+                <li><a href="../planes_de_trabajo.php">Planes de trabajo</a></li>
                 <li><a href="../estudiantes.php">Estudiantes</a></li>
                 <li><a href="../informes.php">Informes</a></li>
             </ul>
