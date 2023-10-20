@@ -5,31 +5,24 @@
     <title>Consejerías UD v.1.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
-   
- 
 </head>
 <body>
     <header>
         <ul id="user-menu">
             <a href="#" id="logout-button"><i class="fas fa-user-circle"></i></a>
             <ul id="lista">
-            <li id="logout-option">Salir</li>
+                <li id="logout-option">Salir</li>
+            </ul>
         </ul>
-    
-        </ul>
-        
         <h1>Consejerías Universidad Distrital FJC</h1>
-        
         <nav>
             <ul>
                 <li><a href="#">Inicio</a></li>
+                <li><a href="../planes_de_trabajo.php">Planes de trabajo</a></li>
                 <li><a href="../estudiantes.php">Estudiantes</a></li>
-                <li><a href="../formato.php">Planes de trabajo</a></li>
                 <li><a href="../informes.php">Informes</a></li>
             </ul>
-            
-            </nav>
-            
+        </nav>
     </header>
     
     
