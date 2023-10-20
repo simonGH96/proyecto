@@ -2,10 +2,11 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombre"];
     $codigo = $_POST["codigo"];
+    $correo = $_POST["correo"];
     $password = $_POST["password"];
     
     // Verifica que los campos no estén vacíos
-    if (empty($nombre) || empty($codigo) || empty($password) ) {
+    if (empty($nombre) || empty($codigo) || empty($correo) || empty($password) ) {
         echo "Por favor, completa todos los campos.";
     } else {
         $servername = "localhost"; // Dirección del servidor de la base de datos (puede variar)
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "El nombre de usuario ya está en uso. Por favor, elige otro.";
         } else {
             // Insertar el nuevo usuario en la base de datos
-            $insert_query = "INSERT INTO Docente (codigo, password, nombre) VALUES ('$codigo', '$password', '$nombre')";
+            $insert_query = "INSERT INTO Docente (codigo, password, nombre, correo) VALUES ('$codigo', '$password', '$nombre', '$correo')";
 
             if ($conn->query($insert_query) === TRUE) {
                 echo "Registro exitoso. Ahora puedes <a href='login.html'>iniciar sesión</a>.";

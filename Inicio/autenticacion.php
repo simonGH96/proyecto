@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Consultar la base de datos para verificar las credenciales
-    $query = "SELECT * FROM Docente WHERE codigo = '$username' AND password = '$password'";
+    $query = "SELECT * FROM Docente WHERE correo = '$username' AND password = '$password'";
     $result = $conn->query($query);
 
     if ($result->num_rows > 0) {
