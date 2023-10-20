@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Planes de Trabajo</title>
+    <link rel="stylesheet" type="text/css" href="planes_de_trabajo.css">
+
 </head>
 <body>
     <h1>Lista de Planes de Trabajo</h1>
@@ -10,36 +12,40 @@
     <ul>
         <?php
         // Conectar a la base de datos (debes proporcionar tus credenciales)
-        $servername = "tu_servidor";
-        $username = "tu_usuario";
-        $password = "tu_contraseña";
-        $dbname = "tu_base_de_datos";
+        $servername = "localhost"; // Dirección del servidor de la base de datos (puede variar)
+        $username_db = "root"; // Tu nombre de usuario de la base de datos
+        $password_db = ""; // Tu contraseña de la base de datos
+        $database = "proyecto_consejerias"; // Nombre de la base de datos
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if ($conn->connect_error) {
-            die("Error de conexión: " . $conn->connect_error);
-        }
+        $conn = new mysqli($servername, $username_db, $password_db, $database);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión a la base de datos: " . $conn->connect_error);
+}
+
 
         // Consulta para obtener los planes de trabajo
-        $sql = "SELECT id, nombre FROM planes_de_trabajo";
+        $sql = "SELECT codigo_fk, asignatura FROM planes";
         $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "<li>" . $row["nombre"] . " ";
-                echo "<a href='editar.php?id=" . $row["id"] . "'>Editar</a> ";
-                echo "<a href='eliminar.php?id=" . $row["id"] . "'>Eliminar</a></li>";
-            }
-        } else {
-            echo "No hay planes de trabajo disponibles.";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+                echo "<li>" . $row["asignatura"] . " ";
+                echo "<a href='formato.php?id=" . $row["codigo_fk"] . "'>Editar</a> ";
+                echo "<a href='eliminar.php?id=" . $row["codigo_fk"] . "'>Eliminar</a></li>";
         }
+    } else {
+        echo "No hay planes de trabajo disponibles.";
+    }
 
         // Cerrar la conexión a la base de datos
         $conn->close();
         ?>
     </ul>
 
-    <a href="home.php">Volver</a>
+    <a href="inicio/home.php">Volver</a>
+    <a href="formato.php">Nuevo plan de trabajo</a>
 </body>
 </html>
