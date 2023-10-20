@@ -126,4 +126,23 @@ a:hover {
 #lista {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+#planes-trabajo-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #20188f;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin-top: 5px; /* Espacio entre "Planes de trabajo" y la lista desplegable */
+}
+
+#planes-trabajo-dropdown li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Agregar un efecto de sombra al menú desplegable */
+#planes-trabajo-dropdown {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
