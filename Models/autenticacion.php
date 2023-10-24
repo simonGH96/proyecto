@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // Autenticación exitosa
         // Redirige al usuario a la página de inicio o el panel de control
-        header("Location: home.php"); // Reemplaza con la URL correcta
+        header("Location: ../Views/index.php"); // Reemplaza con la URL correcta
         exit();
     } else {
         // Autenticación fallida, muestra un mensaje de error

@@ -22,12 +22,12 @@
                 <div class="card-body p-md-5 mx-md-4">
 
                     <div class="text-center">
-                    <img src="../Assets/images/uploads/logo_ud_sin_texto.png"
+                    <img src="Assets/images/uploads/logo_ud_sin_texto.png"
                         style="width: 50px;" alt="logo">
                     <h4 class="mt-1 mb-5 pb-1">Iniciar sesión</h4>
                     </div>
 
-                    <form action="autenticacion.php" method="POST">
+                    <form action="Models/autenticacion.php" method="POST">
             <div class="form-group">
                 <label for="username">correo</label>
                 <input type="text" id="username" name="username" required>
