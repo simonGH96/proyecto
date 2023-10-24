@@ -22,22 +22,27 @@
                 <div class="card-body p-md-5 mx-md-4">
 
                     <div class="text-center">
-                    <img src="Assets/images/uploads/logo_ud_sin_texto.png"
+                    <img src="Assets/images/logo_ud_sin_texto.png"
                         style="width: 50px;" alt="logo">
                     <h4 class="mt-1 mb-5 pb-1">Iniciar sesión</h4>
                     </div>
 
-                    <form action="Models/autenticacion.php" method="POST">
-            <div class="form-group">
-                <label for="username">correo</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Iniciar Sesión</button>
-                </form>
+                    <form name="formLogin" id="formLogin" action="Models/autenticacion.php" method="POST">
+                    <div class="form-outline mb-4">
+                        <input type="text" id="txtUser" name="txtUser" class="form-control"
+                            placeholder="Correo" />
+                            <br>
+                     </div>
+                     <div class="form-outline mb-4">
+                            <input type="password" id="txtPassword" name="txtPassword" class="form-control" 
+                            placeholder="Contraseña"/>
+                            <br>
+                        </div>
+                        <div class="text-center pt-1 mb-5 pb-1">
+                            <button class="btn btn-block gradient-custom-2 mb-3" type="submit" id="ButtonLogin">Ingresar</button>
+                            <a class="text-muted" href="Models/registro.html">Registrarse</a>
+                        </div>
+                    </form>
 
                 </div>
                 </div>
