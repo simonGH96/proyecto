@@ -1,0 +1,12 @@
+<?php getModal('AddLearningResultModal', $data);?>
+AddCounselingModal
+
+<?php getModal('EditLearningResultModal', $data);?>
+EditCounselingModal
+
+type="button" onclick="addLerningResultModal()
+addCounselingModal()
+
+
+table-bordered mb-0" id="learningResultTable"
+counselingTable

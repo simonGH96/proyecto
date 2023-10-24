@@ -1,0 +1,35 @@
+create table res_tipo_norma(codigo int primary key, nombre varchar(255));
+
+
+insert into res_tipo_norma values(1,'Resolucion');
+insert into res_tipo_norma values(2,'Acuerdo');
+insert into res_tipo_norma values(3,'Acta');
+insert into res_tipo_norma values(4,'Circular');
+insert into res_tipo_norma values(5,'Decreto');
+insert into res_tipo_norma values(6,'Ley');
+insert into res_tipo_norma values(7,'Comunicado');
+
+
+create table res_actor(codigo int primary key, nombre varchar(255));
+insert into res_actor values(1,'Estudiante');
+insert into res_actor values(2,'Docente');
+insert into res_actor values(3,'Administrativo');
+
+
+create table res_normas(codigo int primary key, numero_norma varchar(20), tipo_norma int , tema varchar(255), actor_est int, actor_doc int, actor_adm int, fecha_inicio varchar(10), fecha_final varchar(10));
+insert into res_normas values(1, '02 del 2020', 2, 'Sistema de admision y selecciones por bolsa', 1, 0, 0, '10/12/2020', '');
+insert into res_normas values(2, '07 del 2014', 2, '02/2020 Programa academico transitorio como opcion de grado', 1, 0, 0, '14/08/2014', '');
+insert into res_normas values(3, '038 de 2015', 2, 'Reglamentacion trabajo de grado estudiantes de pregrado', 1, 0, 0, '14/08/2014', '');
+insert into res_normas values(4, '132 de 2017', 1, '"Protocolo" para la prevencion y atencion de Violencias Basadas en Genero y Violencia sexual', 1, 1, 1, '4/12/2018', '');
+
+
+select res_normas.numero_norma, res_tipo_norma.nombre, res_normas.tema, res_normas.fecha_inicio
+from res_normas, res_tipo_norma
+where res_normas.tipo_norma = res_tipo_norma.codigo and res_normas.tema like '%admision%';
+
+
+
+
+select t1.numero_norma, t2.nombre, t1.tema, t1.fecha_inicio
+from res_normas as t1, res_tipo_norma as t2
+where t1.tipo_norma = t2.codigo and t1.tema like '%admision%';
