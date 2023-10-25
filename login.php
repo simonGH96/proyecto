@@ -29,12 +29,12 @@
 
                     <form name="formLogin" id="formLogin" action="Models/autenticacion.php" method="POST">
                     <div class="form-outline mb-4">
-                        <input type="text" id="txtUser" name="txtUser" class="form-control"
+                        <input type="text" id="username" name="username" class="form-control"
                             placeholder="Correo" />
                             <br>
                      </div>
                      <div class="form-outline mb-4">
-                            <input type="password" id="txtPassword" name="txtPassword" class="form-control" 
+                            <input type="password" id="password" name="password" class="form-control" 
                             placeholder="Contraseña"/>
                             <br>
                         </div>
