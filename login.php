@@ -68,15 +68,9 @@
         const baseUrl = "#";
     </script>
     </section>
-   <div>
-         
-         <a href="Registro.html">Registrarse</a>
+   <div>   
+         <a href="Models/registro.php">Registrarse</a>
     </div>
     </section>
-
-
-    
-   
-    
 </body>
 </html>
