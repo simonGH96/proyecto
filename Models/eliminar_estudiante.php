@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  }
              </script>';
         echo '<script>alert("Estudiante eliminado con éxito.");</script>';
-        echo '<script>window.location.href = "estudiantes.php";</script>'; 
+        echo '<script>window.location.href = "../Views/estudiantes.php";</script>'; 
     } else {
         echo "Error al eliminar el estudiante: " . mysqli_error($conexion);
     }

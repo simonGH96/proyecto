@@ -1,3 +1,7 @@
+<?php
+require '../Views/header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

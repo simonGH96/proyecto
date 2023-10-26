@@ -7,7 +7,7 @@ require '../Views/header.php';
 <head>
     <meta charset="UTF-8">
     <title>Gestión de Estudiantes</title>
-    <link rel="stylesheet" type="text/css" href="inicio/styles.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
 </head>
 <body>
     <header>
@@ -15,9 +15,8 @@ require '../Views/header.php';
     </header>
     
     <main>
-        <a href="inicio/home.php">
-        <button id="home-button">Volver al Inicio</button></a>
-        <a href="agregar_estudiante.html">
+       
+        <a href="../Models/agregar_estudiante.html">
         <button id="agregar_estudiante">Agregar Estudiante</button>
         </a>
         <table class="student-table">
@@ -47,8 +46,8 @@ require '../Views/header.php';
                         echo "<td>" . $fila["codigo"] . "</td>";
                         echo "<td>" . $fila["nombre"] . "</td>";
                         echo "<td>";
-                        echo '<a href="editar_estudiante.php?codigo=' . $fila["codigo"] . '"><button class="edit-button">Editar</button></a>';
-                        echo '<form method="POST" action="eliminar_estudiante.php">';
+                        echo '<a href="../Models/editar_estudiante.php?codigo=' . $fila["codigo"] . '"><button class="edit-button">Editar</button></a>';
+                        echo '<form method="POST" action="../Models/eliminar_estudiante.php">';
                         echo '<input type="hidden" name="estudiante_id" value="' . $fila["codigo"] . '">';
                         echo '<button class="delete-button" type="submit">Eliminar</button>';
                         echo '</form>';
@@ -64,8 +63,7 @@ require '../Views/header.php';
                 ?>
             </tbody>
         </table>
-        <a href="inicio/home.php">
-        <button id="home-button">Volver al Inicio</button></a>
+        
     </main>
 
     <footer>
