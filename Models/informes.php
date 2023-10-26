@@ -10,6 +10,12 @@ require_once('../Config/Config.php'); // Ajusta la ruta a db.php según la ubica
     <link rel="stylesheet" href="styleInformes.css">
     <title>Gráficas</title>
 </head>
+
+<div class="row justify-content-center" id="general-title">
+        <div class="col-11">
+            <h3><Hola></h3>
+        </div>
+    </div>
 <body>
     <div class="container">
         <h1>Gráficas</h1>
