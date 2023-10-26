@@ -80,11 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <br>            
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="text" id="correo" name="correo"  class="form-control" placeholder="Cédula o código" required />
+                        <input type="text" id="correo" name="correo"  class="form-control" placeholder="Correo electrónico" required />
                         <br>            
                     </div>
                     <div class="form-outline mb-4">
-                        <input type="password" id="password" name="password"  class="form-control" placeholder="Cédula o código" required />
+                        <input type="password" id="password" name="password"  class="form-control" placeholder="password" required />
                         <br>            
                     </div>   
 
@@ -96,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  </div>
             </div>
             </nav>
-          
                 </div>
             </div>
             </div>
