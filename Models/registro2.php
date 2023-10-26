@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="../Assets/css/style.css">
-</head>
-<body>
-    <?php
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombre"];
     $codigo = $_POST["codigo"];
@@ -41,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert_query = "INSERT INTO Docente (codigo, password, nombre, correo) VALUES ('$codigo', '$password', '$nombre', '$correo')";
 
             if ($conn->query($insert_query) === TRUE) {
-                echo "Registro exitoso. Ahora puedes <a href='../login.php'>iniciar sesión</a>.";
+                echo "Registro exitoso. Ahora puedes <a href='login.html'>iniciar sesión</a>.";
             } else {
                 echo "Error al registrar el usuario: " . $conn->error;
             }
@@ -53,28 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-    <div class="registration-container">
-        <h1>Registro</h1>
-        <form action="registro.php" method="POST">
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-            <div class="form-group">
-                <label for="codigo">Cedula o codigo</label>
-                <input type="text" id="codigo" name="codigo" required>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo</label>
-                <input type="text" id="correo" name="correo" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Registrarse</button>
-        </form>
-    </div>
-</body>
-</html>

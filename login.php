@@ -53,9 +53,9 @@
                         Sistematización de Datos e Ingeniería en Telemática 
                         podrán adicionar, actualizar y/o eliminar los resultados de las sesiones de consejerias academicas,
                          así como la respectiva asignación a cada una de ellas</p>
-                        <center>
-                        <img src="/Assets/images/logo_ud.png" alt="Logo" style="width:200px height: 200px;">
-                        </center>
+                         <div style="text-align: center;">
+                            <img src="Assets/images/logo_ud.png" alt="Logo" style="width: 29px; height: 20px; margin: 0 auto;">
+                        </div>
                     </div>
                 </div>
                 </div>
