@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
             <li class="nav-item dropdown">
-                        <a class="nav-link" href="index.php" id="navbarDropdownMenuLink" role="button" >
+                        <a class="nav-link" href="../Views/index.php" id="navbarDropdownMenuLink" role="button" >
                             Inicio
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

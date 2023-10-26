@@ -87,7 +87,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Editar Estudiante</title>
-    <link rel="stylesheet" type="text/css" href="estilo_agregar_estudiante.css">
+    <link rel="stylesheet" type="text/css" href="../estilo_agregar_estudiante.css">
 </head>
 <body>
     <h1>Editar Estudiante</h1>
@@ -139,7 +139,7 @@ $conn->close();
 <textarea id="recomendaciones_consejero" name="recomendaciones_consejero" required><?php echo $estudiante['recomendaciones']; ?></textarea>
 
     <button type="submit">Guardar Cambios</button>
-    <button type="button" class="return-button" onclick="window.location.href='estudiantes.php'">Volver</button>
+    <button type="button" class="return-button" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>
 </form>
 
 </body>
