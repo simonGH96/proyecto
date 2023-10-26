@@ -256,3 +256,13 @@ font-size: 24px; /* Aumenta el tamaño del ícono a 24px (ajústalo según tus p
 cursor: pointer;
 color: rgb(38, 0, 255); /* Cambiar el color del ícono cuando se pasa el cursor sobre él (ajústalo según tus preferencias) */
 }
+
+.card-body .bd-yellow-300 {
+  color: #373737;
+  background-color: #ffda6a;
+}
+
+.card-body .bd-yellow-300:hover {
+  color: #373737;
+  background-color: #ffcd39;
+}
