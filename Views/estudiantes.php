@@ -1,3 +1,7 @@
+<?php
+// Incluye el encabezado
+require '../Views/header.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
