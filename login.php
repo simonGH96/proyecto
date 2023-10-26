@@ -40,7 +40,7 @@
                         </div>
                         <div class="text-center pt-1 mb-5 pb-1">
                             <button class="btn btn-block gradient-custom-2 mb-3" type="submit" id="ButtonLogin">Ingresar</button>
-                            <a class="text-muted" href="Models/registro.html">Registrarse</a>
+                            <a class="text-muted" href="Models/registro.php">Registrarse</a>
                         </div>
                     </form>
 
@@ -67,10 +67,8 @@
     <script>
         const baseUrl = "#";
     </script>
+  
     </section>
-   <div>   
-         <a href="Models/registro.php">Registrarse</a>
-    </div>
-    </section>
+    
 </body>
 </html>
