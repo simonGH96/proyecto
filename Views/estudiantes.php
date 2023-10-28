@@ -1,34 +1,34 @@
 <?php
-// Incluye el encabezado
 require '../Views/header.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Gestión de Estudiantes</title>
-    <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Gestión de Estudiantes</h1>
-    </header>
-    
-    <main>
-       
-        <a href="../Models/agregar_estudiante.html">
-        <button id="agregar_estudiante">Agregar Estudiante</button>
-        </a>
-        <table class="student-table">
-            <thead>
-                <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+   <div class="row justify-content-center" id="card-content-page">
+    <div class="col-10">
+        <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h3>Gestión de Estudiantes</h3>
+        </div>
+        <div class="card-body row justify-content-center" id="card-body-page">
+            
+            <div class="col-11">
+                <form id="formConceptualTools" name="formConceptualTools">
+                <div class="row justify-content-center">
+                <div class="col-md-2">                  
+                <a href="../Models/agregar_estudiante.html" id="agregar_estudiante" class="btn btn-warning">Agregar estudiante</a>
+                </div>
+                </form>
+                <div class="tile">
+                    <div class="tile-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-centered table-bordered mb-0" id="conceptualToolsTable" style="width:100%">
+                        <thead>
+                            <tr>
+                            <th>código</th>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                        <?php
                 // Establecer la conexión a la base de datos
                 $conexion = mysqli_connect("localhost", "root", "", "proyecto_consejerias");
 
@@ -46,11 +46,8 @@ require '../Views/header.php';
                         echo "<td>" . $fila["codigo"] . "</td>";
                         echo "<td>" . $fila["nombre"] . "</td>";
                         echo "<td>";
-                        echo '<a href="../Models/editar_estudiante.php?codigo=' . $fila["codigo"] . '"><button class="edit-button">Editar</button></a>';
-                        echo '<form method="POST" action="../Models/eliminar_estudiante.php">';
-                        echo '<input type="hidden" name="estudiante_id" value="' . $fila["codigo"] . '">';
-                        echo '<button class="delete-button" type="submit">Eliminar</button>';
-                        echo '</form>';
+                        echo '<a class="btn" href="../Models/editar_estudiante.php?codigo=' . $fila["codigo"] . '">Editar</a>';
+                        echo '<a href="../Models/eliminar_estudiante.php?estudiante_id=' . $fila["codigo"] . '" class="btn">Eliminar</a>';
                         echo "</td>";
                         echo "</tr>";
                     }                    
@@ -62,13 +59,18 @@ require '../Views/header.php';
                 mysqli_close($conexion);
                 ?>
             </tbody>
-        </table>
-        
-    </main>
-
+                       
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+   
+    
     <footer>
         <p>Pie de Página - © 2023 Gestión de Estudiantes</p>
     </footer>
-</body>
-</html>
-
