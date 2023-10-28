@@ -1,3 +1,6 @@
+<?php
+require '../Views/header.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +10,9 @@
 </head>
 <body>
     
-
-    <h1>Agregar Estudiante</h1>
-
+            <div class="text-center">
+                <h3 class="mt-1 mb-3 pb-1">Agregar nuevo estudiante</h3>
+            </div>
     <form action="agregar_estudiante.php" method="post" class="student-form">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
@@ -59,8 +62,8 @@
         <label for="recomendaciones_consejero">Recomendaciones del Consejero:</label>
         <textarea id="recomendaciones_consejero" name="recomendaciones_consejero"></textarea>
 
-        <button type="submit">Agregar Estudiante</button>
-        <button type="button" class="return-button" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>
+        <button type="submit" class="btn btn-warning">Agregar Estudiante</button>
+        <button type="button" class="btn btn-warning" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>
         
     </form>
 
