@@ -23,7 +23,7 @@ require '../Views/header.php';
                         <table class="table table-hover table-centered table-bordered mb-0" id="conceptualToolsTable" style="width:100%">
                         <thead>
                             <tr>
-                            <th>código</th>
+                            <th>Código</th>
                             <th>Nombre</th>
                             <th>Acciones</th>
                             </tr>

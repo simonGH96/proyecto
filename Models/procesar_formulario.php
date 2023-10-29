@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $documentoNombre = $_FILES["documento"]["name"];
         $documentoTipo = $_FILES["documento"]["type"];
         $documentoTamaño = $_FILES["documento"]["size"];
-        $documentoUbicación = "uploads/" . $documentoNombre; // Directorio donde se almacenará el documento
+        $documentoUbicación = "../Data/" . $documentoNombre; // Directorio donde se almacenará el documento
 
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["documento"]["tmp_name"], $documentoUbicación)) {
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Por ejemplo, puedes insertar esta información en una tabla de la base de datos
 
             // Redireccionar de nuevo al formulario o a otra página después de procesar
-            header("Location: formulario.php");
+            header("Location: planes_de_trabajo.php");
             exit;
         } else {
             echo "Error al subir el archivo.";

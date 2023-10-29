@@ -65,7 +65,7 @@ $resultado = mysqli_query($conexion, $sql);
 
                             <div class="form-group">
                                 <label for="documento">Subir Documento:</label>
-                                <input type="file" id="documento" name="documento" required>
+                                <input type="file" id="documento" name="documento">
                             </div>
 
                             <div class="form-group">
@@ -78,10 +78,6 @@ $resultado = mysqli_query($conexion, $sql);
             </div>
             <a href="planes_de_trabajo.php" class="btn btn-warning">Volver</a>
         </div>
-
-
-
-
 
 </body>
 
