@@ -11,9 +11,14 @@ require '../Views/header.php';
 
 </head>
 <body>
-    <h1>Lista de Planes de Trabajo</h1>
-
-    <ul>
+<div class="row justify-content-center" id="card-content-page">
+    <div class="col-10">
+        <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h3>Planes de trabajo</h3>
+        </div>
+        <div class="card-body row justify-content-center" id="card-body-page">
+        <tbody>    
         <?php
         // Conectar a la base de datos (debes proporcionar tus credenciales)
         $servername = "localhost"; // Dirección del servidor de la base de datos (puede variar)
@@ -49,7 +54,13 @@ if ($conn->connect_error) {
         ?>
     </ul>
 
-    <a href="inicio/home.php">Volver</a>
-    <a href="formato.php">Nuevo plan de trabajo</a>
+        </tbody>
+        </div>
+        </div>
+    <a href="formato.php" class="btn btn-warning">Nuevo plan de trabajo</a>
+    </div>
+    
+</div>     
+    
 </body>
 </html>

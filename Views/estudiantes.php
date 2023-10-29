@@ -13,7 +13,8 @@ require '../Views/header.php';
                 <form id="formConceptualTools" name="formConceptualTools">
                 <div class="row justify-content-center">
                 <div class="col-md-2">                  
-                <a href="../Models/agregar_estudiante.html" id="agregar_estudiante" class="btn btn-warning">Agregar estudiante</a>
+                <a href="../Models/add_student.php" id="agregar_estudiante" class="btn btn-warning">Agregar estudiante</a>
+                <br></br>
                 </div>
                 </form>
                 <div class="tile">
