@@ -6,9 +6,14 @@ require '../Views/header.php';
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Planes de Trabajo</title>
-    <link rel="stylesheet" type="text/css" href="planes_de_trabajo.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <title>Planes de trabajo</title>
 
 </head>
 
@@ -63,8 +68,8 @@ if ($conn->connect_error) {
                 echo "<td>" . $row["codigo_fk"] . "</td>";
                 echo "<td>" . $row["asignatura"] . "</td>";
                 echo "<td>";
-                echo "<a href='formato.php?id=" . $row["codigo_fk"] . "'>Editar</a> ";
-                echo "<a href='eliminar.php?id=" . $row["codigo_fk"] . "'>Eliminar</a>";
+                echo '<a class="btn" href="formato.php?codigo=' . $row["codigo_fk"] . '">Editar</a>';
+                echo '<a href="eliminar.php?estudiante_id=' . $row["codigo_fk"] . '" class="btn">Eliminar</a>';
                 echo "</td>";
                 echo "</tr>";   
         }
