@@ -2,14 +2,12 @@
 // Incluye el encabezado
 require 'header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-    <head>
-    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
 </head>
 
 <div class="row justify-content-center" id="general-title">
@@ -26,21 +24,23 @@ require 'header.php';
                     <div class="small-box bg-secondary shadow">
                         <div class="inner">
                             <h3>85</h3>
-                            <p>Estudiantes activos</p>
+                            <p class="white-text">Estudiantes activos</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-solid fa-graduation-cap fa-3x"></i>
                         </div>
                     </div>
                 </div>
+
+               
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success shadow">
                         <div class="inner">
                             <h3>77</h3>
-                            <p>Espacios académicos</p>
+                            <p class="white-text">Espacios académicos</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-solid fa-brain fa-3x"></i>
+                            <i class="fa fa-solid fa-arrow-circle-o-up fa-3x"></i>
                         </div>
                     </div>
                 </div>
@@ -48,10 +48,10 @@ require 'header.php';
                     <div class="small-box bg-danger shadow">
                         <div class="inner">
                             <h3>50</h3>
-                            <p>Docentes</p>
+                            <p class="white-text">Docentes</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-solid fa-person-chalkboard fa-3x"></i>
+                            <i class="fa fa-solid fa-male fa-3x"></i>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ require 'header.php';
                             <p>Planes de trabajo</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-solid fa-arrow-right-arrow-left fa-3x"></i>
+                            <i class="fa fa-solid fa-book fa-3x"></i>
                         </div>
                     </div>
                 </div>
