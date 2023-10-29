@@ -81,6 +81,10 @@ overflow-x: hidden
   padding: 10px;
 }
 
+.white-text {
+    color: white;
+}
+
 .small-box .icon {
   color: rgba(0,0,0,.15);
   z-index: 0;
@@ -307,7 +311,7 @@ h4 {
 }
 
 p {
-  color: #666;
+  color: #000000;
 }
 
 a {
