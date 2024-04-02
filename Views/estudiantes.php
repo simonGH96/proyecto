@@ -73,5 +73,7 @@ require '../Views/header.php';
    
     
     <footer>
-        <p>Pie de Página - © 2023 Gestión de Estudiantes</p>
+    <?php
+require '../Models/Footer.php';
+?>
     </footer>
