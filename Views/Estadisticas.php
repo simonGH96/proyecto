@@ -1,10 +1,6 @@
 <?php
-<<<<<<< Updated upstream
-require '../Views/header.php';
-=======
 require 'header.php';
 require '../Controllers/pruebacontrolador.php';
->>>>>>> Stashed changes
 ?>
 
 <head>
@@ -22,30 +18,16 @@ require '../Controllers/pruebacontrolador.php';
 </div>
 <!-- Cuadritos informativos -->
 <div class="row justify-content-center" id="widgets-sts">
-<<<<<<< Updated upstream
     <div class="col-11">
         <div class="row">
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-secondary shadow">
                     <div class="inner">
-                        <h3>85</h3>
+                        <h3><?php echo $cantidadEstudiantes; ?></h3>
                         <p class="white-text">Estudiantes activos</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-solid fa-graduation-cap fa-3x"></i>
-=======
-        <div class="col-11">
-            <div class="row">
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-secondary shadow">
-                        <div class="inner">
-                            <h3><?php echo $cantidadEstudiantes; ?></h3>
-                            <p class="white-text">Estudiantes activos</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-solid fa-graduation-cap fa-3x"></i>
-                        </div>
->>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
@@ -61,27 +43,15 @@ require '../Controllers/pruebacontrolador.php';
                         <i class="fa fa-solid fa-arrow-circle-o-up fa-3x"></i>
                     </div>
                 </div>
-<<<<<<< Updated upstream
             </div>
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger shadow">
                     <div class="inner">
-                        <h3>50</h3>
+                        <h3><?php echo $cantidadDocentes; ?></h3>
                         <p class="white-text">Docentes</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-solid fa-male fa-3x"></i>
-=======
-                <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger shadow">
-                        <div class="inner">
-                            <h3><?php echo $cantidadDocentes; ?></h3>
-                            <p class="white-text">Docentes</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa fa-solid fa-male fa-3x"></i>
-                        </div>
->>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
