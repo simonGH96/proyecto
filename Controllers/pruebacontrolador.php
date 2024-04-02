@@ -1,7 +1,20 @@
-require 'StudentModel.php'; // Reemplaza con la ruta correcta a tu Modelo
+<?php
 
-// Crea una instancia del Modelo
-$studentModel = new StudentModel();
+require '../Models/Stadistics_model.php'; // Reemplaza con la ruta correcta a tu Modelo
 
-// Llama a la función del Modelo para obtener la cantidad de estudiantes
-$cantidadEstudiantes = $studentModel->obtenerCantidadEstudiantes();
+
+// Crear una instancia del modelo
+$stadisticsModel = new StadisticsModel();
+
+// Llamar a la función para obtener la cantidad de estudiantes
+$cantidadEstudiantes = $stadisticsModel->obtenerCantidadEstudiantes();
+
+// Llamar a la función para obtener la cantidad de docentes
+$cantidadDocentes = $stadisticsModel->obtenerCantidadDocentes();
+
+// Asegúrate de cerrar la conexión a la base de datos cuando hayas terminado
+$stadisticsModel->cerrarConexion();
+
+// Aquí puedes usar $cantidadEstudiantes y $cantidadDocentes en tu vista o realizar cualquier otra lógica que necesites.
+
+?>
