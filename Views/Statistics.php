@@ -1,6 +1,5 @@
 <?php
-require 'header.php';
-require '../Controllers/pruebacontrolador.php';
+require '../Views/header.php';
 ?>
 
 <head>
@@ -23,7 +22,7 @@ require '../Controllers/pruebacontrolador.php';
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-secondary shadow">
                     <div class="inner">
-                        <h3><?php echo $cantidadEstudiantes; ?></h3>
+                        <h3>85</h3>
                         <p class="white-text">Estudiantes activos</p>
                     </div>
                     <div class="icon">
@@ -47,7 +46,7 @@ require '../Controllers/pruebacontrolador.php';
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-danger shadow">
                     <div class="inner">
-                        <h3><?php echo $cantidadDocentes; ?></h3>
+                        <h3>50</h3>
                         <p class="white-text">Docentes</p>
                     </div>
                     <div class="icon">

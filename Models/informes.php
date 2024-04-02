@@ -1,6 +1,5 @@
 <?php
-require_once('../Config/Config.php'); // Ajusta la ruta a db.php según la ubicación real en tu proyecto.
-// Resto del código de index.php
+require_once('../Config/Config.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">

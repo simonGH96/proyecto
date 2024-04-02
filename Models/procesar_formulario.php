@@ -1,10 +1,13 @@
 <?php
+
+require_once('../Config/Config.php'); 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los valores del formulario
     $planDeTrabajo = $_POST["plan_de_trabajo"];
     $asignatura = $_POST["asignatura"];
-    $estudiante = $_POST["estudiante"];
-
+    $codigoFK = $_POST["estudiante"];
+    
     // Procesar la subida de documentos
     if ($_FILES["documento"]["error"] === UPLOAD_ERR_OK) {
         $documentoNombre = $_FILES["documento"]["name"];
@@ -14,19 +17,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["documento"]["tmp_name"], $documentoUbicación)) {
-            // Aquí puedes realizar cualquier otra operación con los datos, como guardarlos en una base de datos
-            // Por ejemplo, puedes insertar esta información en una tabla de la base de datos
+            $sql = "INSERT INTO planes (escribir_plan, asignatura, documento, codigo_FK) VALUES (?, ?, ?,?)";
 
-            // Redireccionar de nuevo al formulario o a otra página después de procesar
+        // Prepara la sentencia SQL
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt) {
+            // Asocia los parámetros con los valores del formulario
+            $stmt->bind_param("sssi", $planDeTrabajo, $asignatura, $documentoNombre, $codigoFK);
+            
+            // Ejecuta la consulta SQL para insertar el registro en la base de datos
+        if ($stmt->execute()) {
+        echo '<script>alert("Formulario guardado exitosamente.");</script>';
+        echo '<script>window.location.href = "../Models/planes_de_trabajo.php";</script>'; 
+        } else {
+        echo "Error al agregar el estudiante: " . $stmt->error;
+        }
+
+        // Cierra la sentencia SQL
+        $stmt->close();
+        } else {
+         echo "Error en la preparación de la sentencia SQL: " . $conn->error;
+        }
+
             header("Location: planes_de_trabajo.php");
             exit;
         } else {
             echo "Error al subir el archivo.";
         }
     } else {
-        echo "Error al subir el archivo.";
+        echo "Error al subir el archivo blablabla.";
     }
 } else {
     echo "Acceso no autorizado.";
 }
+// Cierra la conexión a la base de datos
+$conn->close();
 ?>
+
+
+ 

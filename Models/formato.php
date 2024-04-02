@@ -7,7 +7,7 @@ require '../Views/header.php';
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Subida de Documentos</title>
-    <link rel="stylesheet" type="text/css" href="formato.css">
+    <link rel="stylesheet" type="text/css" href="../estilo_agregar_estudiante.css">
 </head>
 
 <body>
@@ -48,28 +48,28 @@ $resultado = mysqli_query($conexion, $sql);
                                 <label for="estudiante">Estudiante:</label>
                                 <select id="estudiante" name="estudiante" required>
                                     <?php
-            if (mysqli_num_rows($resultado) > 0) {
-                while ($fila = mysqli_fetch_assoc($resultado)) {
-                    echo "<option value='" . $fila["codigo"] . "'>" . $fila["codigo"] . "</option>";
-                }
-            } else {
-                echo "<option value=''>No se encontraron estudiantes</option>";
-            }
-            ?>
+                                  if (mysqli_num_rows($resultado) > 0) {
+                                     while ($fila = mysqli_fetch_assoc($resultado)) {
+                                     echo "<option value='" . $fila["codigo"] . "'>" . $fila["codigo"] . "</option>";
+                                     }
+                                     } else {
+                                        echo "<option value=''>No se encontraron estudiantes</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
                             <?php
-    mysqli_close($conexion);
-    ?>
+                            mysqli_close($conexion);
+                            ?>
 
                             <div class="form-group">
                                 <label for="documento">Subir Documento:</label>
-                                <input type="file" id="documento" name="documento">
+                                <input type="file" id="documento" name="documento" class="btn">
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Subir Documento">
+                                <input class="btn btn-warning" type="submit" value="Subir Documento">
                             </div>
                         </form>
                     </tbody>
