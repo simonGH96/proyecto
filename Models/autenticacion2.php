@@ -6,18 +6,16 @@ require '../Config/Config.php';
 function encryptPassword($password_db, $key) {
     $cipher = "aes-256-cbc";
     $ivlen = openssl_cipher_iv_length($cipher);
-    $iv = openssl_random_pseudo_bytes($ivlen); 
-    $encrypted = openssl_encrypt($password_db, $cipher, $key, 0, $iv);
-    return base64_encode($iv . $encrypted);
+    $inivec = openssl_random_pseudo_bytes($ivlen); 
+    $encrypted = openssl_encrypt($password_db, $cipher, $key, 0, $inivec);
+    return base64_encode($encrypted . "::" . $inivec);
 }
 
 // Función para desencriptar la contraseña usando AES
-function decryptPassword($encrypted, $key) {
-    $cipher = "aes-256-cbc";
-    $ivlen = openssl_cipher_iv_length($cipher);
-    $iv = substr($encrypted, 0, $ivlen);
-    $encrypted = substr($encrypted, $ivlen);
-    return openssl_decrypt($encrypted, $cipher, $key, 0, $iv);
+function decryptPassword($password_db, $key) {
+    list($datos_encriptados, $inivec) = explode('::', base64_decode($password_db),2);
+
+    return openssl_decrypt($datos_encriptados , 'aes-256-cbc', $key,0,$inivec);
 }
 
 $key = "7e5bcc2c288d4a297f8057aec4eda652da648cbd84977debe2e243b0ac7babcd";
@@ -35,16 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $pasCifrado = encryptPassword($row['password'],$key);
         echo "el password es" . $pasCifrado;
-        $storedPassword = decryptPassword($row['password'],$key);
+        $storedPassword = decryptPassword($pasCifrado,$key);
         echo "el password descifrado es: " . $storedPassword;
         echo "password" . $row['password'];
         
-      /*  if ($password === $storedPassword) {
+        if ($password === $storedPassword) {
             // Autenticación exitosa
             // Redirige al usuario a la página de inicio o el panel de control
             header("Location: ../Views/index.php"); 
             exit();
-        }*/
+        }
     }
     echo "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
 }
