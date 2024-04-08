@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $insert_query = "INSERT INTO Docente (codigo, password, nombre, correo) VALUES ('$codigo', '$password', '$nombre', '$correo')";
 
             if ($conn->query($insert_query) === TRUE) {
-                echo "Registro exitoso. Ahora puedes <a href='../login.php'>iniciar sesión</a>.";
+                echo "Registro exitoso. Ahora puedes <a href='../Views/login.php'>iniciar sesión</a>.";
             } else {
                 echo "Error al registrar el usuario: " . $conn->error;
             }

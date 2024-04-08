@@ -65,7 +65,7 @@ require '../Views/header.php';
             <h2 class="titulo">Que dicen nuestros asesorados</h2>
             <div class="cards">
                 <div class="card">
-                    <img src="../Assets/images/Menta.jpg" alt="">
+                    <img src="" alt="">
                     
                         <h4>Name</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, tenetur.</p>
@@ -73,7 +73,7 @@ require '../Views/header.php';
                 </div>
 
                 <div class="card">
-                    <img src="../Assets/images/Valentin.jpg" alt="">
+                    <img src="" alt="">
                     
                         <h4>Name</h4>
                         <p>Lore ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, tenetur.</p>

@@ -65,7 +65,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="../login.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link" href="../Views/login.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Salir
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

@@ -12,6 +12,10 @@ $cantidadEstudiantes = $stadisticsModel->obtenerCantidadEstudiantes();
 // Llamar a la función para obtener la cantidad de docentes
 $cantidadDocentes = $stadisticsModel->obtenerCantidadDocentes();
 
+$cantidadMaterias = $stadisticsModel->obtenerMaterias();
+
+$cantidadPlanes = $stadisticsModel->obtenerCantidadPlanes();
+
 // Asegúrate de cerrar la conexión a la base de datos cuando hayas terminado
 $stadisticsModel->cerrarConexion();
 
