@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
 
                 </div>
             </div>
-            <a href="planes_de_trabajo.php" class="btn btn-warning">Volver</a>
+            <a href="../Models/planes_de_trabajo.php" class="btn btn-warning">Volver</a>
         </div>
 
 </body>

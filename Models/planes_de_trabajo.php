@@ -44,30 +44,35 @@ require_once '../Config/Config.php'
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-        
-        // Consulta para obtener los planes de trabajo
-        $sql = "SELECT * FROM planes";
-        $result = $conn->query($sql);
+                                        <?php
+// Consulta para obtener los planes de trabajo con el nombre de la asignatura
+$sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo
+        FROM planes
+        INNER JOIN asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
+        INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo";
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["id_planes"] . "</td>";
-                echo "<td>" . $row["asignatura_FK"] . "</td>";
-                echo "<td>";
-                echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["id_planes"] . '">Editar</a>';
-                echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
-                echo "</td>";
-                echo "</tr>";   
-        }
-    } else {
-        echo "No hay planes de trabajo disponibles.";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["codigo"] . "</td>";
+        echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
+        echo "<td>";
+        echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
+        echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
+        echo "</td>";
+        echo "</tr>";   
     }
+} else {
+    echo "No hay planes de trabajo disponibles.";
+}
 
-        // Cerrar la conexión a la base de datos
-        $conn->close();
-        ?>
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>
+
                                         </tbody>
                                     </table>
                                 </div>

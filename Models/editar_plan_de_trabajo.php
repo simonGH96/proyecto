@@ -2,24 +2,26 @@
 require_once('../Config/Config.php');
 
 $estudiante_codigo = '';
+$id_plan='';
 
-if (isset($_GET['codigo']) ) {
+if (isset($_GET['codigo']) && isset($_GET['id_plan'])) {
     $estudiante_codigo = $_GET['codigo'];
+    $id_plan = $_GET['id_plan'];
 
     // Consulta SQL para obtener la información del estudiante según el código
-    $sql = "SELECT * FROM planes WHERE codigo_FK = ?";
-
+    $sql = "SELECT * FROM estudiante WHERE codigo = ?";
 
     // Preparar la sentencia SQL
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("s", $estudiante_codigo);
+        $stmt->bind_param("s", $estudiante_codigo); // "ss" indica dos parámetros de tipo string
         $stmt->execute();
         $resultado = $stmt->get_result();
 
         if ($resultado->num_rows > 0) {
-            $planes = $resultado->fetch_assoc();
+            $estudiante = $resultado->fetch_assoc();
+            // Aquí puedes hacer algo con los datos del estudiante
         } else {
             echo "Estudiante no encontrado.";
             exit();
@@ -29,19 +31,35 @@ if (isset($_GET['codigo']) ) {
     } else {
         echo "Error en la preparación de la sentencia SQL: " . $conn->error;
     }
+} else {
+    echo "Código de estudiante o ID de plan no proporcionados.";
+    exit();
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nuevo_plan = $_POST["plan_de_trabajo"];
-    $nueva_asignatura = $_POST["asignatura"];
+    $asignatura = $_POST["asignatura"];
+
+    // Obtener el id_ciudad correspondiente a la asignatura ingresada
+$id_asignatura = null;
+$stmt_asignatura = $conn->prepare("SELECT id_asignatura FROM asignatura_planes WHERE asignatura = ?");
+$stmt_asignatura->bind_param("s", $asignatura);
+$stmt_asignatura->execute();
+$result_asignatura = $stmt_asignatura->get_result();
+if ($result_asignatura->num_rows > 0) {
+    $row = $result_asignatura->fetch_assoc();
+    $id_asignatura = $row["id_asignatura"];
+}
+$stmt_asignatura->close();
 
     // Consulta de actualización
-    $sql_update = "UPDATE planes SET escribir_plan = ?,asignatura = ? WHERE codigo_FK = ?";
+    $sql_update = "UPDATE planes SET escribir_plan = ?,asignatura_FK = ? WHERE id_planes = ?";
 
     $stmt_update = $conn->prepare($sql_update);
 
     if ($stmt_update) {
-        $stmt_update->bind_param("sss", $nuevo_plan,$nueva_asignatura, $estudiante_codigo);
+        $stmt_update->bind_param("sss", $nuevo_plan,$id_asignatura, $id_plan);
 
         if ($stmt_update->execute()) {
             echo '<script>window.location.href = "../Models/planes_de_trabajo.php";</script>';
@@ -53,6 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error en la preparación de la sentencia SQL de actualización: " . $conn->error;
     }
 }
-$conn->close();
+
 ?>
 

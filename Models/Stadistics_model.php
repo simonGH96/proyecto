@@ -45,7 +45,7 @@ class StadisticsModel {
     }
     public function obtenerMaterias() {
         // Ejecuta una consulta SQL (debes adaptarla a tu esquema de base de datos).
-        $query = $this->conn->prepare("SELECT COUNT(DISTINCT asignatura) AS cantidad FROM planes");
+        $query = $this->conn->prepare("SELECT COUNT(DISTINCT asignatura) AS cantidad FROM asignatura_planes");
         $query->execute();
         $result = $query->get_result();
         $row = $result->fetch_assoc();

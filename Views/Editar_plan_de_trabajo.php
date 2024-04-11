@@ -21,25 +21,89 @@ require '../Models/editar_plan_de_trabajo.php';
                 </div>
                 <div class="card-body row justify-content-center" id="card-body-page">
                     <tbody>
-                        <form action="Editar_plan_de_trabajo.php?codigo=<?php echo $estudiante_codigo; ?>" method="post" enctype="multipart/form-data">
+                        <form action="Editar_plan_de_trabajo.php?codigo=<?php echo $estudiante_codigo; ?>&id_plan=<?php echo $id_plan; ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="plan_de_trabajo">Ingresar Plan de Trabajo:</label>
                                 <textarea id="plan_de_trabajo" name="plan_de_trabajo" rows="6" cols="100" required>
-                                <?php echo $planes['escribir_plan']; ?>
+                                <?php
+// Suponiendo que tienes una conexión a la base de datos llamada $conn
+
+// Consulta SQL para obtener la información deseada
+$sql = "SELECT planes.escribir_plan
+        FROM planes 
+        INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo
+        WHERE planes.id_planes = $id_plan";
+
+
+// Ejecutar la consulta
+$resultado = mysqli_query($conn, $sql);
+
+// Verificar si la consulta fue exitosa
+if ($resultado) {
+    // Obtener el resultado como un arreglo asociativo
+    $planes = mysqli_fetch_assoc($resultado);
+
+    // Imprimir el valor de escribir_plan
+    echo $planes['escribir_plan'];
+
+    // Liberar el resultado de la consulta
+    mysqli_free_result($resultado);
+} else {
+    // Manejar el caso de que la consulta falle
+    echo "Error al ejecutar la consulta: " . mysqli_error($conn);
+}
+
+?>
+
                                 </textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="asignatura">Asignatura:</label>
-                                <input type="text" id="asignatura" name="asignatura" value="<?php echo $planes['asignatura']; ?>" required>
-                            </div>
+                            <?php
+// Realizar la consulta para obtener las asignaturas
+$sql_asignaturas = "SELECT asignatura FROM asignatura_planes";
+$result_asignaturas = $conn->query($sql_asignaturas);
 
-                            <div class="form-group">
-                                <label for="estudiante">Estudiante:</label>
-                                <select id="estudiante" name="estudiante"  required>
-                                 <option><?php echo $planes['codigo_FK']; ?></option>
-                                </select>
-                            </div>
+// Realizar la consulta para obtener los estudiantes
+$sql_estudiantes = "SELECT codigo FROM estudiante";
+$result_estudiantes = $conn->query($sql_estudiantes);
+
+// Comprobar si se encontraron filas para asignaturas
+if ($result_asignaturas->num_rows > 0) {
+    // Crear la etiqueta select para asignaturas
+    echo '<label for="asignatura">Asignatura:</label>';
+    echo '<select id="asignatura" name="asignatura">';
+    
+    // Mostrar opciones en un bucle while
+    while($row = $result_asignaturas->fetch_assoc()) {
+        echo '<option value="' . $row["asignatura"] . '">' . $row["asignatura"] . '</option>';
+    }
+    
+    echo '</select>';
+} else {
+    echo "No se encontraron resultados en la tabla de asignaturas.";
+}
+
+// Comprobar si se encontraron filas para estudiantes
+if ($result_estudiantes->num_rows > 0) {
+    // Crear la etiqueta select para estudiantes
+    echo '<label for="estudiante">Estudiante:</label>';
+    echo '<select id="estudiante" name="estudiante" required>';
+    
+    // Mostrar opciones en un bucle while
+    while($row = $result_estudiantes->fetch_assoc()) {
+        echo '<option value="' . $row["codigo"] . '">' . $row["codigo"] . '</option>';
+    }
+    
+    echo '</select>';
+} else {
+    echo "No se encontraron resultados en la tabla de estudiantes.";
+}
+
+// Cerrar la conexión
+$conn->close();
+?>
+
+
                             <div class="form-group">
                                 <label for="documento">Subir Documento:</label>
                                 <input type="file" id="documento" name="documento" class="btn">
