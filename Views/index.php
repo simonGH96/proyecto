@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+<?php
+require '../Views/header.php';
+require_once '../Config/Config.php'
+?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost/proyecto/proyecto/Assets/css/indexStyle.css">
+    <link rel="stylesheet" href="../Assets/css/indexStyle.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Flamenco:wght@300;400&display=swap" rel="stylesheet">
@@ -11,12 +14,6 @@
 </head>
 
 <body>
-    <header>
-        <?php
-// Incluye el encabezado
-require '../Views/header.php';
-?>
-    </header>
     <main>
     <section class="contenedor intro-UD">
         <h4 class="titulo-principal">¿Quiénes somos?</h4>
@@ -67,16 +64,16 @@ require '../Views/header.php';
                 <div class="card">
                     <img src="" alt="">
                     
-                        <h4>Name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, tenetur.</p>
+                        <h4>Nombre</h4>
+                        <p>Aquí va la información del docente consejero.</p>
                     
                 </div>
 
                 <div class="card">
                     <img src="" alt="">
                     
-                        <h4>Name</h4>
-                        <p>Lore ipsum dolor sit amet, consectetur adipisicing elit. Voluptas, tenetur.</p>
+                    <h4>Nombre</h4>
+                        <p>Aquí va la información del docente consejero.</p>
                    
                 </div>
             </div>

@@ -202,9 +202,10 @@ require '../Models/data_Students.php'
 </script>
 
 <script >
-        // Datos de ejemplo (puedes reemplazar esto con tus propios datos)
+        // Datos de ejemplo 
         var dataFromDatabase = {
             categories: <?php echo json_encode($nombres); ?>,
+            
             values: [1, 2, 5, 2, 3]
         };
 
@@ -229,7 +230,7 @@ require '../Models/data_Students.php'
                 data: dataFromDatabase.values // Valores para el gráfico
             }, {
                 name: 'Tiempo esperado para grado',
-                data: [5, 6, 3, 8, 4]
+                data: [9, 8, 5, 8, 7]
             }]
         };
 
