@@ -206,7 +206,7 @@ require '../Models/data_Students.php'
         var dataFromDatabase = {
             categories: <?php echo json_encode($nombres); ?>,
             
-            values: [1, 2, 5, 2, 3]
+            values: <?php echo json_encode($values);?>
         };
 
         // Configura las opciones del gráfico
@@ -230,14 +230,13 @@ require '../Models/data_Students.php'
                 data: dataFromDatabase.values // Valores para el gráfico
             }, {
                 name: 'Tiempo esperado para grado',
-                data: [9, 8, 5, 8, 7]
+                data: <?php echo json_encode($semestres_faltantes);?>
             }]
         };
 
         // Renderiza el gráfico en el contenedor "container"
         Highcharts.chart('Grafica2', options);
     </script>
-
 
 <script>
         // Set up the chart
