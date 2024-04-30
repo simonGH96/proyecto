@@ -54,11 +54,13 @@
                             <li><a class="dropdown-item" href="http://www.sistematizaciondatos.com.dream.website/resultados/arq/val/validar2.php" target="_blank">Diligenciar Encuesta</a></li>                            
                         </ul>
                     </li>
-
+                    
+                    
                     <li class="nav-item dropdown">
                         <a class="nav-link " href="../Views/Estadisticas.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Informes
                         </a>
+                   
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             
                             <li><a class="dropdown-item" href="http://www.sistematizaciondatos.com.dream.website/resultados/arq/val/validar2.php" target="_blank">Diligenciar Encuesta</a></li>                            

@@ -1,7 +1,12 @@
 <?php
+require '../Models/autenticacion2.php';
+if ($_SESSION['rol'] === 'admin') {
+    header("Location: acceso_denegado.php");
+    exit();
+}
 require 'header.php';
 require '../Controllers/pruebacontrolador.php';
-require '../Models/data_Students.php'
+require '../Models/data_Students.php';
 ?>
 
 <head>
@@ -18,9 +23,12 @@ require '../Models/data_Students.php'
     </div>
 </div>
 <!-- Cuadritos informativos -->
+
+
 <div class="row justify-content-center" id="widgets-sts">
     <div class="col-11">
         <div class="row">
+       
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-secondary shadow">
                     <div class="inner">
@@ -32,7 +40,7 @@ require '../Models/data_Students.php'
                     </div>
                 </div>
             </div>
-
+      
 
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success shadow">

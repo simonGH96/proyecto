@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "El nombre de usuario ya está en uso. Por favor, elige otro.";
         } else {
             // Insertar el nuevo usuario en la base de datos
-            $insert_query = "INSERT INTO Docente (codigo, password, nombre, correo) VALUES ('$codigo', '$password', '$nombre', '$correo')";
+            $insert_query = "INSERT INTO Docente (codigo, password, nombre, correo, rol) VALUES ('$codigo', '$password', '$nombre', '$correo', 'user')";
 
             if ($conn->query($insert_query) === TRUE) {
                 echo "Registro exitoso. Ahora puedes <a href='../Views/login.php'>iniciar sesión</a>.";

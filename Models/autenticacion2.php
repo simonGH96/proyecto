@@ -20,14 +20,20 @@ function decryptPassword($password_db, $key) {
 
 $key = "7e5bcc2c288d4a297f8057aec4eda652da648cbd84977debe2e243b0ac7babcd";
 
+session_start();
 // Verificar si el usuario está intentando iniciar sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+    $codigo = 2000456001;
+    $rol = 'admin';
     // Consultar la base de datos para verificar las credenciales
     $query = "SELECT * FROM Docente WHERE correo = '$username'";
     $result = $conn->query($query);
+
+    $_SESSION['codigo'] = $codigo;
+    $_SESSION['rol'] = $rol;
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
