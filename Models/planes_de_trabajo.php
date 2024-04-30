@@ -1,5 +1,6 @@
 <?php
-require '../Views/header.php';
+require  '../Views/header.php';
+require_once '../Config/Config.php'
 ?>
 
 <!DOCTYPE html>
@@ -43,42 +44,35 @@ require '../Views/header.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-        // Conectar a la base de datos (debes proporcionar tus credenciales)
-        $servername = "localhost"; // Dirección del servidor de la base de datos (puede variar)
-        $username_db = "root"; // Tu nombre de usuario de la base de datos
-        $password_db = ""; // Tu contraseña de la base de datos
-        $database = "proyecto_consejerias"; // Nombre de la base de datos
+                                        <?php
+// Consulta para obtener los planes de trabajo con el nombre de la asignatura
+$sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo
+        FROM planes
+        INNER JOIN asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
+        INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo";
 
 
-        $conn = new mysqli($servername, $username_db, $password_db, $database);
+$result = $conn->query($sql);
 
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
-        // Consulta para obtener los planes de trabajo
-        $sql = "SELECT codigo_fk, asignatura FROM planes";
-        $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $row["codigo_fk"] . "</td>";
-                echo "<td>" . $row["asignatura"] . "</td>";
-                echo "<td>";
-                echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo_fk"] . '">Editar</a>';
-                echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["codigo_fk"] . '" class="btn">Eliminar</a>';
-                echo "</td>";
-                echo "</tr>";   
-        }
-    } else {
-        echo "No hay planes de trabajo disponibles.";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["codigo"] . "</td>";
+        echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
+        echo "<td>";
+        echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
+        echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
+        echo "</td>";
+        echo "</tr>";   
     }
+} else {
+    echo "No hay planes de trabajo disponibles.";
+}
 
-        // Cerrar la conexión a la base de datos
-        $conn->close();
-        ?>
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -86,7 +80,7 @@ if ($conn->connect_error) {
 
                         </div>
                     </div>
-                    <a href="formato.php" class="btn btn-warning">Nuevo plan de trabajo</a>
+                    <a href="../Models/formato.php" class="btn btn-warning">Nuevo plan de trabajo</a>
                 </div>
             </div>
         </div>

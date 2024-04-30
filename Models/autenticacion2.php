@@ -1,0 +1,56 @@
+<?php
+require '../Config/Config.php';
+
+
+// Función para encriptar la contraseña usando AES
+function encryptPassword($password_db, $key) {
+    $cipher = "aes-256-cbc";
+    $ivlen = openssl_cipher_iv_length($cipher);
+    $inivec = openssl_random_pseudo_bytes($ivlen); 
+    $encrypted = openssl_encrypt($password_db, $cipher, $key, 0, $inivec);
+    return base64_encode($encrypted . "::" . $inivec);
+}
+
+// Función para desencriptar la contraseña usando AES
+function decryptPassword($password_db, $key) {
+    list($datos_encriptados, $inivec) = explode('::', base64_decode($password_db),2);
+
+    return openssl_decrypt($datos_encriptados , 'aes-256-cbc', $key,0,$inivec);
+}
+
+$key = "7e5bcc2c288d4a297f8057aec4eda652da648cbd84977debe2e243b0ac7babcd";
+
+session_start();
+// Verificar si el usuario está intentando iniciar sesión
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $codigo = 2000456001;
+    $rol = 'admin';
+    // Consultar la base de datos para verificar las credenciales
+    $query = "SELECT * FROM Docente WHERE correo = '$username'";
+    $result = $conn->query($query);
+
+    $_SESSION['codigo'] = $codigo;
+    $_SESSION['rol'] = $rol;
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $pasCifrado = encryptPassword($row['password'],$key);
+        echo "el password es" . $pasCifrado;
+        $storedPassword = decryptPassword($pasCifrado,$key);
+        echo "el password descifrado es: " . $storedPassword;
+        echo "password" . $row['password'];
+        
+        if ($password === $storedPassword) {
+            // Autenticación exitosa
+            // Redirige al usuario a la página de inicio o el panel de control
+            header("Location: ../Views/index.php"); 
+            exit();
+        }
+    }
+    echo "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
+}
+
+?>

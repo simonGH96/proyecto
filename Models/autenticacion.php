@@ -1,17 +1,6 @@
 <?php
 
-$servername = "localhost"; // Dirección del servidor de la base de datos (puede variar)
-$username_db = "root"; // Tu nombre de usuario de la base de datos
-$password_db = ""; // Tu contraseña de la base de datos
-$database = "proyecto_consejerias"; // Nombre de la base de datos
-
-// Establecer la conexión
-$conn = new mysqli($servername, $username_db, $password_db, $database);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+require '../Config/Config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -24,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         // Autenticación exitosa
         // Redirige al usuario a la página de inicio o el panel de control
-        header("Location: ../Views/index.php"); // Reemplaza con la URL correcta
+        header("Location: ../Views/index.php"); 
         exit();
     } else {
         // Autenticación fallida, muestra un mensaje de error

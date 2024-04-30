@@ -1,6 +1,12 @@
 <?php
+require '../Models/autenticacion2.php';
+if ($_SESSION['rol'] === 'admin') {
+    header("Location: acceso_denegado.php");
+    exit();
+}
 require 'header.php';
 require '../Controllers/pruebacontrolador.php';
+require '../Models/data_Students.php';
 ?>
 
 <head>
@@ -16,10 +22,18 @@ require '../Controllers/pruebacontrolador.php';
         <h3>Tratamiento estadístico</h3>
     </div>
 </div>
+    <div class="col-11">
+
+        <h3>Tratamiento estadístico</h3>
+    </div>
+</div>
 <!-- Cuadritos informativos -->
+
+
 <div class="row justify-content-center" id="widgets-sts">
     <div class="col-11">
         <div class="row">
+       
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-secondary shadow">
                     <div class="inner">
@@ -31,12 +45,12 @@ require '../Controllers/pruebacontrolador.php';
                     </div>
                 </div>
             </div>
-
+      
 
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-success shadow">
                     <div class="inner">
-                        <h3>77</h3>
+                        <h3><?php echo $cantidadMaterias?></h3>
                         <p class="white-text">Espacios académicos</p>
                     </div>
                     <div class="icon">
@@ -58,7 +72,7 @@ require '../Controllers/pruebacontrolador.php';
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-warning shadow">
                     <div class="inner">
-                        <h3>90</h3>
+                        <h3><?php echo $cantidadPlanes?></h3>
                         <p>Planes de trabajo</p>
                     </div>
                     <div class="icon">
@@ -89,7 +103,21 @@ require '../Controllers/pruebacontrolador.php';
                 </div>
             </div>
         </div>
+                        <div id="container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row" id="charts">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="Grafica2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" id="charts">
             <div class="col-12">
                 <div class="card">
@@ -109,9 +137,33 @@ require '../Controllers/pruebacontrolador.php';
                 </div>
             </div>
         </div>
+        <div class="row" id="charts">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="Grafica3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
+    </div>
+</div>
+
+<!-- Enlaza a la biblioteca Highcharts desde un CDN -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/cylinder.js"></script>
+<script src="https://code.highcharts.com/modules/funnel3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/treemap.js"></script>
 
 <!-- Enlaza a la biblioteca Highcharts desde un CDN -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -133,7 +185,7 @@ require '../Controllers/pruebacontrolador.php';
         type: 'pie'
     },
     title: {
-        text: 'Egg Yolk Composition'
+        text: 'Razones de bajo rendimiento'
     },
     tooltip: {
         valueSuffix: '%'
@@ -172,26 +224,26 @@ require '../Controllers/pruebacontrolador.php';
             colorByPoint: true,
             data: [
                 {
-                    name: 'Water',
-                    y: 55.02
+                    name: 'Carrera incorrecta',
+                    y: 27.8
                 },
                 {
-                    name: 'Fat',
+                    name: 'Problemas familiares',
                     sliced: true,
                     selected: true,
-                    y: 26.71
+                    y: 26.1
                 },
                 {
-                    name: 'Carbohydrates',
-                    y: 1.09
+                    name: 'Adaptación a la univeridad',
+                    y: 5.9
                 },
                 {
-                    name: 'Protein',
-                    y: 15.5
+                    name: 'Movilidad',
+                    y: 26.1
                 },
                 {
-                    name: 'Ash',
-                    y: 1.68
+                    name: 'Otro',
+                    y: 12.9
                 }
             ]
         }
@@ -201,10 +253,11 @@ require '../Controllers/pruebacontrolador.php';
 </script>
 
 <script >
-        // Datos de ejemplo (puedes reemplazar esto con tus propios datos)
+        // Datos de ejemplo 
         var dataFromDatabase = {
-            categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-            values: [10, 20, 15, 25, 30]
+            categories: <?php echo json_encode($nombres); ?>,
+            
+            values: <?php echo json_encode($values);?>
         };
 
         // Configura las opciones del gráfico
@@ -213,7 +266,7 @@ require '../Controllers/pruebacontrolador.php';
                 type: 'bar'
             },
             title: {
-                text: 'Ejemplo de Gráfico Highcharts'
+                text: 'Gráfico Semestres'
             },
             xAxis: {
                 categories: dataFromDatabase.categories // Categorías del eje X
@@ -224,18 +277,18 @@ require '../Controllers/pruebacontrolador.php';
                 }
             },
             series: [{
-                name: 'Datos de la BD',
+                name: 'Tiempo en la universidad',
                 data: dataFromDatabase.values // Valores para el gráfico
             }, {
-                name: 'Datos 2',
-                data: [5, 6, 13, 24, 5]
+                name: 'Tiempo esperado para grado',
+                data: <?php echo json_encode($semestres_faltantes);?>
             }]
         };
 
         // Renderiza el gráfico en el contenedor "container"
         Highcharts.chart('Grafica2', options);
+        Highcharts.chart('Grafica2', options);
     </script>
-
 
 <script>
         // Set up the chart
@@ -250,7 +303,7 @@ require '../Controllers/pruebacontrolador.php';
             }
         },
         title: {
-            text: 'Asignaturas por componente'
+            text: 'Consejeria con mayor exito'
         },
         accessibility: {
             screenReaderSection: {
@@ -272,30 +325,26 @@ require '../Controllers/pruebacontrolador.php';
             }
         },
         series: [{
-            name: 'Asignaturas',
+            name: 'consejo',
             data: [
                 
                 {
-                    name: 'Water',
-                    y: 55.02
+                    name: 'Tutorias',
+                    y: 45
                 },
                 {
-                    name: 'Fat',
+                    name: 'Acompañamiento psicológico',
                     sliced: true,
                     selected: true,
                     y: 26.71
                 },
                 {
-                    name: 'Carbohydrates',
-                    y: 1.09
+                    name: 'Inscripción deportiva',
+                    y: 5.7
                 },
                 {
-                    name: 'Protein',
-                    y: 15.5
-                },
-                {
-                    name: 'Ash',
-                    y: 1.68
+                    name: 'Subsidio económico',
+                    y: 2.8
                 }
             ]
         }]
@@ -309,8 +358,8 @@ require '../Controllers/pruebacontrolador.php';
             type: 'column'
         },
         title: {
-            align: 'left',
-            text: 'Resultados de aprendizaje asignados, distribuidos en componentes y asignaturas'
+            align: 'center',
+            text: 'Historico cantidad de asignaturas habiliatadas por area'
         },
         accessibility: {
             announceNewData: {
@@ -322,7 +371,7 @@ require '../Controllers/pruebacontrolador.php';
         },
         yAxis: {
             title: {
-                text: 'Total resultados de aprendizaje'
+                text: 'Total asignaturas habilitadas'
             }
 
         },
@@ -346,10 +395,39 @@ require '../Controllers/pruebacontrolador.php';
 
         series: [
             {
-                name: "Resultados de aprendizaje",
+                name: "Historico por Area",
                 colorByPoint: true,
                 data: [
-                    
+                    {
+                    name: 'Componente propedeutico',
+                    y: 39,
+                    drilldown: 'Componente propedeutico'
+                },
+                {
+                    name: 'Area de ciencias básicas',
+                    y: 90,
+                    drilldown: 'Area de ciencias básicas'
+                },
+                {
+                    name: 'Area básica de ingeniería',
+                    y: 25,
+                    drilldown: 'Area básica de ingeniería'
+                },
+                {
+                    name: 'Area de ingenieria aplicada',
+                    y: 25,
+                    drilldown: 'Area de ingenieria aplicada'
+                },
+                {
+                    name: 'Area socio Humanistica',
+                    y: 37,
+                    drilldown: 'Area socio Humanistica'
+                },
+                {
+                    name: 'Area Económico Administrativa',
+                    y: 37,
+                    drilldown: 'Area Económico Administrativa'
+                }
                 ]
             }
         ],
@@ -361,15 +439,231 @@ require '../Controllers/pruebacontrolador.php';
             },
             series: [
                 {
-                    name: 'Water',
-                    y: 55.02
+
+                    name: 'Componente propedeutico',
+                    id: 'Componente propedeutico',
+                    data: [
+                        [
+                            'Base de datos avanzadas',
+                            7
+                        ],
+                        [
+                            'Ecuaciones diferenciales',
+                            10
+                        ],
+                        [
+                            'Ingenieria de software',
+                            22
+                        ]
+                    ]
                 },
                 {
-                    name: 'Fat',
-                    sliced: true,
-                    selected: true,
-                    y: 26.71
-                }
+                    name: 'Area de ciencias básicas',
+                    id: 'Area de ciencias básicas',
+                    data: [
+                        [
+                            'Fisica III',
+                            4
+                        ],
+                        [
+                            'Cálculo Integral',
+                            15
+                        ],
+                        [
+                            'Cálculo diferencial',
+                            23
+                        ],
+                        
+                        [
+                            'Fisica Newtoniana',
+                            4
+                        ],
+                        [
+                            'Cálculo multivariado',
+                            4
+                        ],
+                        [
+                            'Algebra lineal',
+                            22
+                        ],
+                        [
+                            'Analisis y métodos númericos',
+                            8
+                        ],
+                        [
+                            'Lógica matemática',
+                            10
+                        ],
+                        [
+                            'Fisica II',
+                            3
+                        ]
+                    ]
+                },
+                {
+
+                name: 'Area básica de ingeniería',
+                id: 'Area básica de ingeniería',
+                data: [
+                    [
+                        'Diseño lógico',
+                        9
+                    ],
+                    [
+                        'Estructura de Datos',
+                        7
+                    ],
+                    [
+                        'Fundamentos de telemática',
+                        3
+                    ],
+                    [
+                        'Introducción a algoritmos',
+                        6
+                    ]        
+                ]
+                },
+                {
+
+                    name: 'Area de ingenieria aplicada',
+                    id: 'Area de ingenieria aplicada',
+                    data: [
+                        [
+                            'Computación cuántica',
+                            2
+                        ],
+                        [
+                            'Arquitectura de datos',
+                            4
+                        ],
+                        [
+                            'Analisis de sistemas',
+                            15
+                        ],
+                        [
+                            'Inteligencia artificial',
+                            6
+                        ],
+                        [
+                            'Programación avanzada',
+                            11
+                        ],
+                        [
+                            'Redes corporativas',
+                            8
+                        ],
+                        [
+                            'Sistemas distribuidos',
+                            4
+                        ],
+                        [
+                            'Redes de alta velocidad',
+                            4
+                        ],
+                        [
+                            'Bases de datos',
+                            10
+                        ],
+                        [
+                            'Teoría de la información',
+                            9
+                        ],
+                        [
+                            'Aplicaciones para internet',
+                            5
+                        ],
+                        [
+                            'Programación orientada a objetos',
+                            13
+                        ],
+                        [
+                            'Analisis de datos',
+                            5
+                        ],
+                        [
+                            'Gerencia y auditoria de redes',
+                            6
+                        ],
+                        [
+                            'Planificación y diseño de redes',
+                            10
+                        ],
+                        [
+                            'Programación multinivel',
+                            10
+                        ]
+
+                    ]
+                },                {
+
+                    name: 'Area socio Humanistica',
+                    id: 'Area socio Humanistica',
+                    data: [
+                        [
+                            'Análisis social Colombiano',
+                            1
+                        ],
+                        [
+                            'Producción y comprensión de textos I',
+                            2
+                        ],
+                        [
+                            'Informatica y sociedad',
+                            1
+                        ],
+                        [
+                            'Tecnociencias',
+                            2
+                        ],
+                        [
+                            'Ética y sociedad',
+                            1
+                        ],
+                        [
+                            'Globalización',
+                            1
+                        ]
+                    ]
+                },
+                {
+
+                        name: 'Area Económico Administrativa',
+                        id: 'Area Económico Administrativa',
+                        data: [
+                           [
+                               'Tics en las organizaciones',
+                               3
+                           ],
+                           [
+                               'Fundamentos de organización',
+                               1
+                           ],
+                           [
+                               'Fundamentos de contabilidad general',
+                               8
+                           ],
+                           [
+                               'Formulación y evaluación de proyectos',
+                               4
+                           ],
+                           [
+                               'Ingenieria económica',
+                               3
+                           ],
+                           [
+                               'Fundamentos de economía',
+                               7
+                           ],
+                           [
+                               'Administración general',
+                               7
+                           ],
+                           [
+                               'Gestión de calidad',
+                               4
+                           ]
+]
+},
             ]
         }
     });

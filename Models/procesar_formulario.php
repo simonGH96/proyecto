@@ -5,8 +5,23 @@ require_once('../Config/Config.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los valores del formulario
     $planDeTrabajo = $_POST["plan_de_trabajo"];
-    $asignatura = $_POST["asignatura"];
+    $asignatura = $_POST["asignatura_FK"];
     $codigoFK = $_POST["estudiante"];
+    
+    // Obtener el id_ciudad correspondiente a la asignatura ingresada
+$id_asignatura = null;
+$stmt_asignatura = $conn->prepare("SELECT id_asignatura FROM asignatura_planes WHERE asignatura = ?");
+$stmt_asignatura->bind_param("s", $asignatura);
+$stmt_asignatura->execute();
+$result_asignatura = $stmt_asignatura->get_result();
+if ($result_asignatura->num_rows > 0) {
+    $row = $result_asignatura->fetch_assoc();
+    $id_asignatura = $row["id_asignatura"];
+}
+$stmt_asignatura->close();
+
+
+    
     
     // Procesar la subida de documentos
     if ($_FILES["documento"]["error"] === UPLOAD_ERR_OK) {
@@ -17,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["documento"]["tmp_name"], $documentoUbicación)) {
-            $sql = "INSERT INTO planes (escribir_plan, asignatura, documento, codigo_FK) VALUES (?, ?, ?,?)";
+            $sql = "INSERT INTO planes (escribir_plan, asignatura_FK, documento, estudiante_FK) VALUES (?, ?, ?,?)";
 
         // Prepara la sentencia SQL
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
             // Asocia los parámetros con los valores del formulario
-            $stmt->bind_param("sssi", $planDeTrabajo, $asignatura, $documentoNombre, $codigoFK);
+            $stmt->bind_param("sssi", $planDeTrabajo, $id_asignatura, $documentoNombre, $codigoFK);
             
             // Ejecuta la consulta SQL para insertar el registro en la base de datos
         if ($stmt->execute()) {
@@ -47,13 +62,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         echo "Error al subir el archivo blablabla.";
+        echo "Error al subir el archivo blablabla.";
     }
 } else {
     echo "Acceso no autorizado.";
 }
 // Cierra la conexión a la base de datos
 $conn->close();
+// Cierra la conexión a la base de datos
+$conn->close();
 ?>
+
+
+ 
 
 
  

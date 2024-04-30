@@ -26,7 +26,7 @@
                     <div class="text-center">
                         <img src="../Assets/images/logo_ud.png"
                             style="max-width: 100%;" alt="logo">
-                        <a class="text-muted" href="../login.php">Iniciar Sesión</a>
+                        <a class="text-muted" href="../Views/login.php">Iniciar Sesión</a>
                     </div>                    
                 </div>
                 </div>

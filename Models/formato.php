@@ -1,5 +1,6 @@
 <?php
 require '../Views/header.php';
+require_once '../Config/Config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,17 +21,10 @@ require '../Views/header.php';
                 <div class="card-body row justify-content-center" id="card-body-page">
                     <tbody>
                         <?php
-// Establecer la conexión a la base de datos
-$conexion = mysqli_connect("localhost", "root", "", "proyecto_consejerias");
 
-if (!$conexion) {
-    die("La conexión a la base de datos ha fallado: " . mysqli_connect_error());
-}
-
-// Consulta SQL para obtener los datos del estudiante
-$sql = "SELECT codigo FROM estudiante ";
-$resultado = mysqli_query($conexion, $sql);
-?>
+                        $sql = "SELECT codigo FROM estudiante ";
+                        $resultado = mysqli_query($conn, $sql);
+                        ?>
 
                         <form action="procesar_formulario.php" method="post" enctype="multipart/form-data">
                             <div class="form-group">
@@ -39,10 +33,28 @@ $resultado = mysqli_query($conexion, $sql);
                                     required></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="asignatura">Asignatura:</label>
-                                <input type="text" id="asignatura" name="asignatura" required>
-                            </div>
+                            
+                            <?php
+        $sql = "SELECT asignatura FROM asignatura_planes";
+        $result = $conn->query($sql);
+
+// Comprobar si se encontraron filas
+if ($result->num_rows > 0) {
+    // Crear la etiqueta select
+    echo '<label for="asignatura_FK">Asignatura:</label>';
+    echo '<select id="asignatura_FK" name="asignatura_FK">';
+    
+    // Mostrar opciones en un bucle while
+    while($row = $result->fetch_assoc()) {
+        echo '<option value="' . $row["asignatura"] . '">' . $row["asignatura"] . '</option>';
+    }
+    
+    echo '</select>';
+} else {
+    echo "No se encontraron resultados en la tabla.";
+}
+
+?>
 
                             <div class="form-group">
                                 <label for="estudiante">Estudiante:</label>
@@ -56,19 +68,29 @@ $resultado = mysqli_query($conexion, $sql);
                                         echo "<option value=''>No se encontraron estudiantes</option>";
                                     }
                                     ?>
+                                  if (mysqli_num_rows($resultado) > 0) {
+                                     while ($fila = mysqli_fetch_assoc($resultado)) {
+                                     echo "<option value='" . $fila["codigo"] . "'>" . $fila["codigo"] . "</option>";
+                                     }
+                                     } else {
+                                        echo "<option value=''>No se encontraron estudiantes</option>";
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
                             <?php
-                            mysqli_close($conexion);
+                            mysqli_close($conn);
                             ?>
 
                             <div class="form-group">
                                 <label for="documento">Subir Documento:</label>
                                 <input type="file" id="documento" name="documento" class="btn">
+                                <input type="file" id="documento" name="documento" class="btn">
                             </div>
 
                             <div class="form-group">
+                                <input class="btn btn-warning" type="submit" value="Subir Documento">
                                 <input class="btn btn-warning" type="submit" value="Subir Documento">
                             </div>
                         </form>
@@ -76,7 +98,7 @@ $resultado = mysqli_query($conexion, $sql);
 
                 </div>
             </div>
-            <a href="planes_de_trabajo.php" class="btn btn-warning">Volver</a>
+            <a href="../Models/planes_de_trabajo.php" class="btn btn-warning">Volver</a>
         </div>
 
 </body>
