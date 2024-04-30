@@ -80,9 +80,12 @@ require_once '../Config/Config.php'
         </section>
 
     </main>
+
+    </main>
     <footer>
         <p>@consejerias_UD</p>
     </footer>
 </body>
+
 
 </html>

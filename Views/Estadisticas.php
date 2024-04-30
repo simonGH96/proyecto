@@ -22,6 +22,11 @@ require '../Models/data_Students.php';
         <h3>Tratamiento estadístico</h3>
     </div>
 </div>
+    <div class="col-11">
+
+        <h3>Tratamiento estadístico</h3>
+    </div>
+</div>
 <!-- Cuadritos informativos -->
 
 
@@ -98,7 +103,21 @@ require '../Models/data_Students.php';
                 </div>
             </div>
         </div>
+                        <div id="container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="row" id="charts">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="Grafica2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" id="charts">
             <div class="col-12">
                 <div class="card">
@@ -118,9 +137,33 @@ require '../Models/data_Students.php';
                 </div>
             </div>
         </div>
+        <div class="row" id="charts">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="Grafica3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
+    </div>
+</div>
+
+<!-- Enlaza a la biblioteca Highcharts desde un CDN -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/cylinder.js"></script>
+<script src="https://code.highcharts.com/modules/funnel3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/treemap.js"></script>
 
 <!-- Enlaza a la biblioteca Highcharts desde un CDN -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -243,6 +286,7 @@ require '../Models/data_Students.php';
         };
 
         // Renderiza el gráfico en el contenedor "container"
+        Highcharts.chart('Grafica2', options);
         Highcharts.chart('Grafica2', options);
     </script>
 

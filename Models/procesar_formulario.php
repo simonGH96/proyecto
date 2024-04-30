@@ -62,13 +62,19 @@ $stmt_asignatura->close();
         }
     } else {
         echo "Error al subir el archivo blablabla.";
+        echo "Error al subir el archivo blablabla.";
     }
 } else {
     echo "Acceso no autorizado.";
 }
 // Cierra la conexión a la base de datos
 $conn->close();
+// Cierra la conexión a la base de datos
+$conn->close();
 ?>
+
+
+ 
 
 
  
