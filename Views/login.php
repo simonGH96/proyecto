@@ -29,7 +29,7 @@
 
                     <form name="formLogin" id="formLogin" action="../Models/autenticacion2.php" method="POST">
                     <div class="form-outline mb-4">
-                        <input type="text" id="username" name="username" class="form-control"
+                        <input type="email" id="username" name="username" class="form-control"
                             placeholder="Correo" />
                             <br>
                      </div>
