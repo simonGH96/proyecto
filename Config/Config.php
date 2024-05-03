@@ -11,4 +11,3 @@ $conn = new mysqli($servername, $username_db, $password_db, $database);
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
-?>
