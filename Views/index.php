@@ -2,7 +2,7 @@
 <html>
 <?php
 require '../Views/header.php';
-require_once '../Config/Config.php'
+require_once '../Config/Config.php';
 ?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@ require_once '../Config/Config.php'
         <section class="contenedor info-relevante">
             <h2 class="titulo"> Información relevante</h2>
             <div class="contenedor-info-relevante">
-                <img src="../Assets/images/imagen-noticia.jpg" class="imagen-about-us">
+                <img src="<?php echo $imagePath; ?>" class="imagen-about-us">
                 <div class="contenido-textos">
                     <h3><span>*</span>Evento</h3>
                     <p>Evento de socialización de la guia del docente consejero.
