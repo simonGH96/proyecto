@@ -1,17 +1,17 @@
 <?php
 require '../Config/Config.php';
+
 // Create
 function uploadImage($name, $file) {
-    global $mysqli;
-    
+    global $conn;
     // Upload image file
     $targetDir = "../Assets/images/";
     $targetFile = $targetDir . basename($file["name"]);
     move_uploaded_file($file["tmp_name"], $targetFile);
     
     // Insert metadata into the database
-    $stmt = $mysqli->prepare("INSERT INTO imagenes (id,nombre, path) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $name, $targetFile);
+    $stmt = $conn->prepare("INSERT INTO imagenes (id,nombre, path) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $name, $file["name"], $targetFile);
     $stmt->execute();
     $stmt->close();
 }
