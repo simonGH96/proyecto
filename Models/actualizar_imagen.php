@@ -23,11 +23,14 @@ function uploadImage($id, $name, $text, $file) {
     $stmt->close();
 
     }
+    header("Location: ../Views/index.php");
+    exit();
 }
 function getImagePath(){
     global $conn;
     $result = $conn->query("SELECT path FROM imagenes WHERE id=1");
-    $imagePath = $result->fetch_assoc();
+    $row = $result->fetch_assoc();
+    $imagePath = $row["path"];
     return $imagePath;
 }
 /*
@@ -65,6 +68,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"  && isset($_POST["update"]) && isset($_
     $imageId = $_POST["id"];
     uploadImage($imageId, $_POST["name"], $_POST["text"], $_FILES["file"]);
 }
+
+$result = $conn->query("SELECT path FROM imagenes WHERE id=1");
+$row = $result->fetch_assoc();
+$imagePath = $row["path"];
 /*
 // Read images
 $images = getImages();
@@ -77,9 +84,7 @@ foreach ($images as $image) {
 // with inputs for name and file, and a hidden input for image id
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
     updateImage($_POST["id"], $_POST["name"], $_FILES["file"]);
-}*/
-
-
+}
+*/  
 $conn->close(); // Close the connection
-header("Location: ../Views/index.php");
 
