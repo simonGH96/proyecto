@@ -1,4 +1,7 @@
 <?php
-session_destroy();
-echo "acaba de cerrar sesón";
+// Logout process
+session_start();
+session_unset(); // Remove all session variables
+session_destroy(); // Destroy the session
 header("Location: ../Views/index.php");
+exit();
