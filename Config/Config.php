@@ -11,6 +11,3 @@ $conn = new mysqli($servername, $username_db, $password_db, $database);
 if ($conn->connect_error) {
     die("Error de conexión a la base de datos: " . $conn->connect_error);
 }
-$result = $conn->query("SELECT path FROM imagenes WHERE id=1");
-$row = $result->fetch_assoc();
-$imagePath = $row["path"];
