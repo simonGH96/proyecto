@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <?php
-require '../Views/header.php';
+require_once '../Views/header.php';
 require_once '../Config/Config.php';
+echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
 ?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

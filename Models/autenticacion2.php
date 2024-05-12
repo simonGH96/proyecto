@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../Config/Config.php';
 
 
@@ -33,24 +34,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "SELECT * FROM Docente WHERE correo = '$username'";
     $result = $conn->query($query);
 
-    $_SESSION['codigo'] = $codigo;
-    $_SESSION['rol'] = $rol;
-
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
         $regex = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
 
-        if (preg_match($regex, $username)) {
-            echo "The email address is valid.";
-            $_SESSION['user'] = [
-                'username' => $row['nombre'],
-                'rol' => $row['rol']  
-            ];
-        } else {
+        if (!preg_match($regex, $username)) {
             echo "The email address is invalid.";
         }
         if (password_verify($password, $row['password'])) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user'] = [
+                'username' => $row['nombre'],
+                'rol' => $row['rol']
+            ];
             header("Location: ../Views/index.php");
             exit();
         } else {
