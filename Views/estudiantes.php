@@ -1,7 +1,7 @@
 <?php
-require '../Views/header.php';
-require '../Models/funciones.php';
-
+require_once '../Views/header.php';
+require_once '../Models/funciones.php';
+/*
 if (isset($_SESSION['user'])) {
     $currentUser = (object) $_SESSION['user']; // Cast the array to an object
 } else {
@@ -12,7 +12,7 @@ if (isset($_SESSION['user'])) {
 // Uso de chequeo de rol
 if (!checkRole($currentUser, '2')) {
     die('Access denied');
-}
+}*/
 ?>
 <div class="row justify-content-center" id="card-content-page">
     <div class="col-10">
