@@ -2,8 +2,8 @@
 require_once '../Views/header.php';
 require_once '../Config/Config.php';
 require '../Models/actualizar_imagen.php';
-echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
-
+/*echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
+*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,6 +46,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DE
                         a los docentes y estudiantes en un camino de acompañamiento optimo. No te lo pierdas.</p>
                 </div>
             </div>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
             <div class="actualizar-imagen">
             <form action="../Models/actualizar_imagen.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="1" > <!-- Replace 1 with actual image ID -->
@@ -55,6 +56,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DE
             <input type="submit" name="update" value="Actualizar imagen" class="btn btn-warning">
             <br><br></form>
             </div>
+            <?php endif; ?>
             <div class="contenedor-info-relevante">
                 <img src="../Assets/images/resolucion.jpg" class="imagen-about-us">
                 <div class="contenido-textos">
@@ -68,6 +70,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DE
                         </a></p>
                 </div>
             </div>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
             <div class="actualizar-imagen">
             <form action="../Models/actualizar_imagen.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="1" > <!-- Replace 1 with actual image ID -->
@@ -77,6 +80,7 @@ echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DE
             <input type="submit" name="update" value="Actualizar imagen" class="btn btn-warning">
             <br><br><br><br></form>
             </div>
+            <?php endif; ?>
         </section>
 
         <section class="clientes contenedor">

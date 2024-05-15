@@ -1,5 +1,5 @@
 <?php
-require '../Views/header.php';
+require_once '../Views/header.php';
 require_once '../Config/Config.php';
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ require_once '../Config/Config.php';
                                     required></textarea>
                             </div>
 
-                            
+
                             <?php
         $sql = "SELECT asignatura FROM asignatura_planes";
         $result = $conn->query($sql);
@@ -68,14 +68,7 @@ if ($result->num_rows > 0) {
                                         echo "<option value=''>No se encontraron estudiantes</option>";
                                     }
                                     ?>
-                                  if (mysqli_num_rows($resultado) > 0) {
-                                     while ($fila = mysqli_fetch_assoc($resultado)) {
-                                     echo "<option value='" . $fila["codigo"] . "'>" . $fila["codigo"] . "</option>";
-                                     }
-                                     } else {
-                                        echo "<option value=''>No se encontraron estudiantes</option>";
-                                    }
-                                    ?>
+                                    
                                 </select>
                             </div>
 
@@ -86,11 +79,9 @@ if ($result->num_rows > 0) {
                             <div class="form-group">
                                 <label for="documento">Subir Documento:</label>
                                 <input type="file" id="documento" name="documento" class="btn">
-                                <input type="file" id="documento" name="documento" class="btn">
                             </div>
 
                             <div class="form-group">
-                                <input class="btn btn-warning" type="submit" value="Subir Documento">
                                 <input class="btn btn-warning" type="submit" value="Subir Documento">
                             </div>
                         </form>
