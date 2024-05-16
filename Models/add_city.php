@@ -16,7 +16,7 @@ require_once '../Config/Config.php'
         <div class="col-10">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h3>Gestión de asignaturas</h3>
+                    <h3>Gestión de ciudades</h3>
                 </div>
                 <div class="card-body row justify-content-center" id="card-body-page">
                     <div class="col-11">
@@ -27,7 +27,7 @@ require_once '../Config/Config.php'
                         </form>
                         <div class="tile">
                             <div class="tile-body">
-                                <nav class="navbar-light ">
+                            <nav class="navbar-light ">
                                     <div class="container-fluid">
                                         <form class="d-flex">
                                             <input class="form-control me-2" type="search" placeholder="Buscar ..."
@@ -36,17 +36,18 @@ require_once '../Config/Config.php'
                                         </form>
                                     </div>
                                 </nav></br></br>
+                                
                                 <div class="table-responsive">
                                     <table class="table table-hover table-centered table-bordered mb-0"
                                         id="conceptualToolsTable" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Asignatura</th>
+                                                <th>Ciudad</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
+                                        <?php
 // Consulta para obtener los planes de trabajo con el nombre de la asignatura
 $sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo
         FROM planes
@@ -81,7 +82,7 @@ $conn->close();
 
                         </div>
                     </div>
-                    <a href="../Models/formato.php" class="btn btn-warning">Nueva asignatura</a>
+                    <a href="../Models/formato.php" class="btn btn-warning">Nueva ciudad</a>
                 </div>
             </div>
         </div>

@@ -6,12 +6,12 @@ require_once '../Config/Config.php';
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Estudiante</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consejerías UD</title>
     <link rel="stylesheet" type="text/css" href="../estilo_agregar_estudiante.css">
-</head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+ </head>
 <body>
     
             <div class="text-center">
@@ -58,18 +58,18 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-        <label for="personas_con_quien_vive">Personas con Quien Vive:</label>
+        <label for="personas_con_quien_vive">Personas con Quien Vive:</label></br>
         <input min=0 type="number" id="personas_con_quien_vive" name="personas_con_quien_vive">
 
-
+        </br>
         <label for="actividades_trabajo">Actividades de Trabajo:</label>
         <input type="text" id="actividades_trabajo" name="actividades_trabajo">
 
         <label for="actividades_interes">Actividades de Interés:</label>
         <input type="text" id="actividades_interes" name="actividades_interes">
 
-        <label for="solicitudes_retiro_reintegro">Solicitudes de Retiro o Reintegro:</label>
-        <input min=0 type=number id="solicitudes_retiro_reintegro" name="solicitudes_retiro_reintegro"></input>
+        <label for="solicitudes_retiro_reintegro">Solicitudes de Retiro o Reintegro:</label></br>
+        <input min=0 type=number id="solicitudes_retiro_reintegro" name="solicitudes_retiro_reintegro"></input></br>
 
         <label for="adaptacion_universidad">Adaptación a la Universidad:</label>
         <textarea id="adaptacion_universidad" name="adaptacion_universidad"></textarea>
@@ -96,13 +96,12 @@ $conn->close();
         <label for="recomendaciones_consejero">Recomendaciones del Consejero:</label>
         <textarea id="recomendaciones_consejero" name="recomendaciones_consejero"></textarea>
         
-        <label for="semestres_transcurridos">Semestres en la universidad:</label>
-        <input min=1 type="number" id="semestres_transcurridos" name="semestres_transcurridos">
+        <label for="semestres_transcurridos">Semestres en la universidad:</label></br>
+        <input min=1 type="number" id="semestres_transcurridos" name="semestres_transcurridos"></br>
         <br><br>
         <button type="submit" class="btn btn-warning">Agregar Estudiante</button>
         <button type="button" class="btn btn-warning" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>
     </form>
 
-   
-</body>
+  </body>
 </html>
