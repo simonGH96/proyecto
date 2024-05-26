@@ -1,6 +1,8 @@
 <?php
 require_once '../Views/header.php';
 require_once '../Models/funciones.php';
+
+// Uncomment this block if session and role check is needed
 /*
 if (isset($_SESSION['user'])) {
     $currentUser = (object) $_SESSION['user']; // Cast the array to an object
@@ -12,7 +14,8 @@ if (isset($_SESSION['user'])) {
 // Uso de chequeo de rol
 if (!checkRole($currentUser, '2')) {
     die('Access denied');
-}*/
+}
+*/
 ?>
 <div class="row justify-content-center" id="card-content-page">
     <div class="col-10">
@@ -21,15 +24,11 @@ if (!checkRole($currentUser, '2')) {
                 <h3>Gestión de Estudiantes</h3>
             </div>
             <div class="card-body row justify-content-center" id="card-body-page">
-
                 <div class="col-11">
-                    <form id="formConceptualTools" name="formConceptualTools">
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <a href="../Models/add_student.php" id="agregar_estudiante" class="btn btn-warning">Agregar estudiante</a>
-                                <br></br>
-                            </div>
-                    </form>
+                    <form class="d-flex mb-3" method="GET" action="">
+                        <input class="form-control me-2" type="search" name="search" placeholder="Buscar por código o nombre..." aria-label="Search">
+                        <button class="btn btn-secondary" type="submit">Buscar</button>
+                    </form> 
                     <div class="tile">
                         <div class="tile-body">
                             <div class="table-responsive">
@@ -50,8 +49,15 @@ if (!checkRole($currentUser, '2')) {
                                             die("La conexión a la base de datos ha fallado: " . mysqli_connect_error());
                                         }
 
+                                        // Obtener el valor de búsqueda si existe
+                                        $search = isset($_GET['search']) ? mysqli_real_escape_string($conexion, $_GET['search']) : '';
+
                                         // Consulta SQL para obtener los datos del estudiante
-                                        $sql = "SELECT codigo, nombre FROM estudiante ";
+                                        $sql = "SELECT codigo, nombre FROM estudiante";
+                                        if ($search) {
+                                            $sql .= " WHERE codigo LIKE '%$search%' OR nombre LIKE '%$search%'";
+                                        }
+
                                         $resultado = mysqli_query($conexion, $sql);
 
                                         if (mysqli_num_rows($resultado) > 0) {
@@ -73,17 +79,17 @@ if (!checkRole($currentUser, '2')) {
                                         mysqli_close($conexion);
                                         ?>
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div></br></br>
+                    <a href="../Models/add_student.php" class="btn btn-warning">Agregar estudiante</a>
+            
                 </div>
-            </div>
+               </div>
         </div>
     </div>
 </div>
-
 
 <footer>
     <?php

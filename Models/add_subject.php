@@ -1,16 +1,13 @@
 <?php
 require_once  '../Views/header.php';
-require_once '../Config/Config.php'
+require_once '../Config/Config.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <title>Gestión</title>
-
 </head>
-
 <body>
     <div class="row justify-content-center" id="card-content-page">
         <div class="col-10">
@@ -27,11 +24,11 @@ require_once '../Config/Config.php'
                         </form>
                         <div class="tile">
                             <div class="tile-body">
-                                <nav class="navbar-light ">
+                                <nav class="navbar-light">
                                     <div class="container-fluid">
-                                        <form class="d-flex">
-                                            <input class="form-control me-2" type="search" placeholder="Buscar ..."
-                                                aria-label="Search">
+                                        <form class="d-flex mb-3" method="GET" action="">
+                                            <input class="form-control me-2" type="search" name="search"
+                                                placeholder="Buscar por nombre..." aria-label="Search">
                                             <button class="btn btn-secondary" type="submit">Buscar</button>
                                         </form>
                                     </div>
@@ -47,33 +44,35 @@ require_once '../Config/Config.php'
                                         </thead>
                                         <tbody>
                                             <?php
-// Consulta para obtener los planes de trabajo con el nombre de la asignatura
-$sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo
-        FROM planes
-        INNER JOIN asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
-        INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo";
+                                            $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
 
+                                            // Consulta para obtener los planes de trabajo con el nombre de la asignatura
+                                            $sql = "SELECT *
+                                                    FROM asignatura_planes";
 
-$result = $conn->query($sql);
+                                            if ($search) {
+                                                $sql .= " WHERE asignatura_planes.asignatura LIKE '%$search%'";
+                                            }
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
-        echo "<td>";
-        echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
-        echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
-        echo "</td>";
-        echo "</tr>";   
-    }
-} else {
-    echo "No hay planes de trabajo disponibles.";
-}
+                                            $result = $conn->query($sql);
 
-// Cerrar la conexión a la base de datos
-$conn->close();
-?>
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
+                                                    echo "<td>";
+                                                    echo '<a class="btn" href="../Models/update_subject.php?id_asignatura=' . $row["id_asignatura"] . '">Editar</a>';
+                                                    echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_asignatura"] . '" class="btn">Eliminar</a>';
+                                                    echo "</td>";
+                                                    echo "</tr>";   
+                                                }
+                                            } else {
+                                                echo "No hay planes de trabajo disponibles.";
+                                            }
 
+                                            // Cerrar la conexión a la base de datos
+                                            $conn->close();
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -81,13 +80,38 @@ $conn->close();
 
                         </div>
                     </div>
-                    <a href="../Models/formato.php" class="btn btn-warning">Nueva asignatura</a>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar asignatura
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="insert_subject.php">
+                                        <div class="form-group">
+                                            <label for="wordInput">Nombre de la asignatura</label>
+                                            <input type="text" class="form-control" name="subject" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-warning">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--         -->
                 </div>
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>

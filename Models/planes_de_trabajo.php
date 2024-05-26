@@ -7,11 +7,12 @@ require_once '../Config/Config.php'
 <html lang="es">
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/@jarstone/dselect/dist/css/dselect.css">
     <title>Planes de trabajo</title>
 
@@ -31,33 +32,45 @@ require_once '../Config/Config.php'
                                 <div class="col-md-2">
                                 </div>
                         </form>
+                        <form class="d-flex mb-3" method="GET" action="">
+                            <input class="form-control me-2" type="search" name="search" placeholder="Buscar por código o nombre..." aria-label="Search">
+                            <button class="btn btn-secondary" type="submit">Buscar</button></br>
+                        </form>
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="table-responsive">
+                                    </br></br>
                                     <table class="table table-hover table-centered table-bordered mb-0"
                                         id="conceptualToolsTable" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>Código</th>
+                                                <th>Nombre</th>
                                                 <th>Asignatura</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
+                                            <?php
+                                            // Obtener el valor de búsqueda si existe
+                                        $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+
 // Consulta para obtener los planes de trabajo con el nombre de la asignatura
-$sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo
+$sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo, estudiante.nombre
         FROM planes
         INNER JOIN asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
         INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo";
 
-
+if ($search) {
+    $sql .= " WHERE codigo LIKE '%$search%' OR nombre LIKE '%$search%'";
+}
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["codigo"] . "</td>";
+        echo "<td>" . $row["nombre"] . "</td>";
         echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
         echo "<td>";
         echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
@@ -79,6 +92,7 @@ $conn->close();
                             </div>
 
                         </div>
+
                     </div>
                     <a href="../Models/formato.php" class="btn btn-warning">Nuevo plan de trabajo</a>
                 </div>

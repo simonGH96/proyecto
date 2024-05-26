@@ -29,11 +29,7 @@ require_once '../Config/Config.php'
                             <div class="tile-body">
                             <nav class="navbar-light ">
                                     <div class="container-fluid">
-                                        <form class="d-flex">
-                                            <input class="form-control me-2" type="search" placeholder="Buscar ..."
-                                                aria-label="Search">
-                                            <button class="btn btn-secondary" type="submit">Buscar</button>
-                                        </form>
+                                       
                                     </div>
                                 </nav></br></br>
                                 
@@ -80,8 +76,35 @@ $conn->close();
 
                         </div>
                     </div>
-                    <a href="../Models/formato.php" class="btn btn-warning">Nuevo transporte</a>
-                </div>
+                   <!-- Button trigger modal -->
+                   <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar Transporte </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar medio de transporte</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="wordInput">Nombre del medio de transporte</label>
+                                        <input type="text" class="form-control" id="wordInput" name="wordInput" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-warning">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
             </div>
         </div>
     </div>
