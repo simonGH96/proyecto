@@ -1,56 +1,61 @@
 <?php
 require_once '../Config/Config.php';
 
+// Initialize variables
 $id_asignatura = '';
+$asignatura = '';
 
-if (isset($_GET['id_asignatura']) ) {
+// Check if id_asignatura is passed via GET request
+if (isset($_GET['id_asignatura'])) {
     $id_asignatura = $_GET['id_asignatura'];
-
-    // Consulta SQL para obtener la información del estudiante según el código
+    
+    // SQL query to fetch the subject based on id_asignatura
     $sql = "SELECT * FROM asignatura_planes WHERE id_asignatura = ?";
 
-    // Preparar la sentencia SQL
+    // Prepare the SQL statement
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        $stmt->bind_param("s", $id_asignatura);
+        $stmt->bind_param("i", $id_asignatura);
         $stmt->execute();
         $resultado = $stmt->get_result();
 
         if ($resultado->num_rows > 0) {
-            $estudiante = $resultado->fetch_assoc();
+            $asignatura_data = $resultado->fetch_assoc();
+            $asignatura = $asignatura_data['asignatura'];
         } else {
-            echo "Asignatura no encontrado.";
+            echo "Asignatura no encontrada.";
             exit();
-        }        
+        }
 
         $stmt->close();
     } else {
         echo "Error en la preparación de la sentencia SQL: " . $conn->error;
+        exit();
+    }
+}
+// Handle the POST request to update the subject
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $new_subject = $_POST["subject"];
+    
+    // Update query
+    $sql_update = "UPDATE asignatura_planes SET asignatura = ? WHERE id_asignatura = ?";
+    $stmt_update = $conn->prepare($sql_update);
+
+    if ($stmt_update) {
+        $stmt_update->bind_param("is", $id_asignatura, $new_subject);
+        if ($stmt_update->execute()) {
+            header("Location: ../Models/add_subject.php");
+            exit();
+        } else {
+            echo "Error al actualizar la asignatura: " . $stmt_update->error;
+        }
+        $stmt_update->close();
+    } else {
+        echo "Error en la preparación de la sentencia SQL de actualización: " . $conn->error;
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_asignatura = $_POST["id_asignatura"];
-    
-    // Obtener el id_ciudad correspondiente a la ciudad ingresada
-    $id_asignatura = null;
-    $stmt_asignatura= $conn->prepare("SELECT id_asignatura FROM asignatura_planes WHERE id_asignatura = ?");
-    $stmt_asignatura->bind_param("s", $ciudad);
-    $stmt_asignatura->execute();
-    $result_asignatura = $stmt_asignatura->get_result();
-    if ($result_asignatura->num_rows > 0) {
-        $row = $result_asignatura->fetch_assoc();
-        $id_asignatura = $row["id_asignatura"];
-    }
-    $stmt_ciudad->close();
-    // Consulta de actualización
-    $sql_update = "UPDATE asignatura_planes SET id_asignatura = ?, asignatura = ? WHERE id_asignatura = ?";
-
-    $stmt_update = $conn->prepare($sql_update);
-
-}       
-// Cerrar la conexión
+// Close the connection
 $conn->close();
 ?>
-

@@ -5,9 +5,11 @@ require_once '../Config/Config.php';
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title>Gestión</title>
 </head>
+
 <body>
     <div class="row justify-content-center" id="card-content-page">
         <div class="col-10">
@@ -61,7 +63,7 @@ require_once '../Config/Config.php';
                                                     echo "<tr>";
                                                     echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
                                                     echo "<td>";
-                                                    echo '<a class="btn" href="../Models/update_subject.php?id_asignatura=' . $row["id_asignatura"] . '">Editar</a>';
+                                                    echo '<a data-bs-toggle="modal" data-bs-target="#Edit_modal" class="btn" href="../Models/update_subject.php?id_asignatura=' . $row["id_asignatura"] . '">Editar</a>';
                                                     echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_asignatura"] . '" class="btn">Eliminar</a>';
                                                     echo "</td>";
                                                     echo "</tr>";   
@@ -69,9 +71,9 @@ require_once '../Config/Config.php';
                                             } else {
                                                 echo "No hay planes de trabajo disponibles.";
                                             }
-
-                                            // Cerrar la conexión a la base de datos
-                                            $conn->close();
+                                            
+                    // Cerrar la conexión a la base de datos
+                    $conn->close();
                                             ?>
                                         </tbody>
                                     </table>
@@ -86,12 +88,14 @@ require_once '../Config/Config.php';
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form method="POST" action="insert_subject.php">
@@ -100,8 +104,37 @@ require_once '../Config/Config.php';
                                             <input type="text" class="form-control" name="subject" required>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
                                             <button type="submit" class="btn btn-warning">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--         -->
+                    <!-- Edit modal -->
+                    <div class="modal fade" id="Edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar asignatura</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="update_subject.php">
+                                    <input type="hidden" name="id_asignatura" value="<?php echo $row["id_asignatura"] ;?>">    
+                                    <div class="form-group">
+                                            <label for="wordInput">Nombre de la asignatura</label>
+                                            <input type="text" class="form-control" name="subject" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-warning">Actualizar</button>
                                         </div>
                                     </form>
                                 </div>
@@ -114,4 +147,5 @@ require_once '../Config/Config.php';
         </div>
     </div>
 </body>
+
 </html>
