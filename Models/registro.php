@@ -1,7 +1,4 @@
 <?php 
-
-phpinfo();
-
 require_once '../Config/Config.php';
 ?>
 <!DOCTYPE html>

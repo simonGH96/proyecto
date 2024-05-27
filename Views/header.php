@@ -75,11 +75,7 @@ session_start();
                             <a class="nav-link" href="../Models/cerrar_sesion.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cerrar sesión
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                                <li><a class="dropdown-item" href="http://www.sistematizaciondatos.com.dream.website/resultados/arq/val/validar2.php" target="_blank">Diligenciar Encuesta</a></li>
-                            </ul>
-                        </li>
+                            
                     <?php endif; ?>
                 </ul>
             </div>

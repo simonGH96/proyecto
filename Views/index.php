@@ -1,9 +1,9 @@
 <?php
 require_once '../Views/header.php';
 require_once '../Config/Config.php';
-require '../Models/actualizar_imagen.php';
-/*echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
-*/
+require_once '../Models/actualizar_imagen.php';
+echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@ require '../Models/actualizar_imagen.php';
 </head>
 
 <body>
+<?php var_dump($_SESSION);?>
     <main>
     <section class="contenedor intro-UD">
         <h4 class="titulo-principal">¿Quiénes somos?</h4>
