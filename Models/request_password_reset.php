@@ -1,57 +1,72 @@
 <?php
-require_once '../Config/Config.php'; 
+require_once '../Config/Config.php';
 
-// Check if the request method is POST
+// Include PHPMailer classes
+require '../phpmailer/src/Exception.php';
+require '../phpmailer/src/PHPMailer.php';
+require '../phpmailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get the email from the POST request
     $email = $_POST['email'];
-
-    // Generate a unique token
     $token = bin2hex(random_bytes(50));
 
-    // Prepare the SELECT statement
     $stmt = $conn->prepare("SELECT * FROM docente WHERE correo = ?");
     if (!$stmt) {
         die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
     }
-    
-    // Bind the email parameter
+
     $stmt->bind_param("s", $email);
-    
-    // Execute the statement
     $stmt->execute();
-    
-    // Get the result
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    
-    // Close the statement
     $stmt->close();
 
     if ($user) {
-        // Prepare the INSERT statement
         $stmt = $conn->prepare("INSERT INTO password_resets (email, token) VALUES (?, ?)");
         if (!$stmt) {
             die("Prepare failed: (" . $conn->errno . ") " . $conn->error);
         }
         
-        // Bind the parameters
         $stmt->bind_param("ss", $email, $token);
-        
-        // Execute the statement
         $stmt->execute();
-        
-        // Close the statement
         $stmt->close();
 
-        // Send the email
-        $resetLink = "http://tu-sitio.com/reset_password.php?token=$token";
+        $resetLink = "https://districonsejerias.000webhostapp.com/Views/login.php";
         $subject = "Restablecimiento de contraseña";
         $message = "Haz clic en el siguiente enlace para restablecer tu contraseña: $resetLink";
-        $headers = "From: no-reply@tu-sitio.com";
 
-        mail($email, $subject, $message, $headers);
-        echo "Se ha enviado un enlace de recuperación a tu correo electrónico.";
+        $mail = new PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'simongonalez96@gmail.com'; // Your Gmail address
+            $mail->Password = 'ybgq zxbc hzov sqmv'; // Your Gmail password or app-specific password
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('no-reply@tu-sitio.com', 'Your Site Name');
+            $mail->addAddress($email);
+
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+            $mail->Body    = $message;
+
+            $mail->send();
+            $message1 = "Se ha enviado un enlace de recuperación a tu correo electrónico.";
+            $redirectUrl1 = "../Views/resetPassword.php";
+    
+            echo "<script type='text/javascript'>
+                    alert('$message1');
+                    window.location.href = '$redirectUrl1';
+                  </script>";
+            
+        } catch (Exception $e) {
+            echo "El mensaje no pudo ser enviado. Error de PHPMailer: {$mail->ErrorInfo}";
+        }
     } else {
         $message = "El correo electrónico no está registrado.";
         $redirectUrl = "../Views/resetPassword.php";

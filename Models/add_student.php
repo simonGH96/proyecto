@@ -17,12 +17,12 @@ require_once '../Config/Config.php';
             <div class="text-center">
                 <h3 class="mt-1 mb-3 pb-1">Agregar nuevo estudiante</h3>
             </div>
-    <form action="agregar_estudiante.php" method="post" class="student-form">
-        <label for="nombre">Nombre:</label>
+    <form action="../Models/agregar_estudiante.php" method="post" class="student-form">
+        <label for="nombre">Nombre:*</label>
         <input type="text" id="nombre" name="nombre" required>
 
-        <label for="codigo">Código:</label>
-        <input type="text" id="codigo" name="codigo" pattern="[0-9]{10,}" title="Por favor, ingrese al menos 10 números" required>
+        <label for="codigo">Código:*</label>
+        <input type="text" id="codigo" name="codigo" pattern="[0-9]{10}" title="Por favor, ingrese 11 números" required>
 
 
         <label for="es_cabeza_familia">Es Cabeza de Familia:</label>

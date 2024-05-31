@@ -34,7 +34,7 @@ session_start();
                             Inicio
                         </a>
                     </li>
-
+                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true ) : ?>
                     <li class="nav-item ">
                         <a class="nav-link " href="../Views/estudiantes.php" role="button">
                             Estudiantes
@@ -46,8 +46,9 @@ session_start();
                             Planes de trabajo
                         </a>
                     </li>
-
-                    <li class="nav-item dropdown">
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && isset($_SESSION['user']['rol']) && $_SESSION['user']['rol'] === 'admin') : ?>
+                        <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Gestión
                         </a>
@@ -57,7 +58,7 @@ session_start();
                             <li><a class="dropdown-item" href="../Models/add_city.php">Agregar ciudad</a></li>
                         </ul>
                     </li>
-
+                    <?php endif; ?>
                     <li class="nav-item ">
                         <a class="nav-link " href="../Views/Estadisticas.php" role="button" >
                             Informes
@@ -68,14 +69,14 @@ session_start();
                             <a class="nav-link" href="../Views/login.php"  role="button"  aria-expanded="false">
                                 Entrar
                             </a>
-                           </li>
+                        </li>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="../Models/cerrar_sesion.php" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link" href="../Models/cerrar_sesion.php"  role="button"  aria-expanded="false">
                                 Cerrar sesión
                             </a>
-                            
+                        </li>
                     <?php endif; ?>
                 </ul>
             </div>
@@ -86,28 +87,6 @@ session_start();
     <content>
     </content>
 
-        <!-- <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const logoutButton = document.getElementById('logout-button');
-                const logoutOption = document.getElementById('logout-option');
-
-                // Función para redirigir al usuario a "login.html"
-                function redirectToLogin() {
-                    window.location.href = 'login.html';
-                }
-                // Mostrar/ocultar el menú desplegable al hacer clic en el botón
-                logoutButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (lista.style.display === 'block') {
-                        lista.style.display = 'none';
-                    } else {
-                        lista.style.display = 'block';
-                    }
-                });
-                // Redirigir al hacer clic en "Salir"
-                logoutOption.addEventListener('click', redirectToLogin);
-            });
-        </script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 

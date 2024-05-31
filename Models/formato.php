@@ -41,7 +41,7 @@ require_once '../Config/Config.php';
 // Comprobar si se encontraron filas
 if ($result->num_rows > 0) {
     // Crear la etiqueta select
-    echo '<label for="asignatura_FK">Asignatura:</label>';
+    echo '<label for="asignatura_FK">Asignatura:*</label>';
     echo '<select id="asignatura_FK" name="asignatura_FK">';
     
     // Mostrar opciones en un bucle while
@@ -57,7 +57,7 @@ if ($result->num_rows > 0) {
 ?>
 
                             <div class="form-group">
-                                <label for="estudiante">Estudiante:</label>
+                                <label for="estudiante">Estudiante:*</label>
                                 <select id="estudiante" name="estudiante" required>
                                     <?php
                                   if (mysqli_num_rows($resultado) > 0) {
@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
                             ?>
 
                             <div class="form-group">
-                                <label for="documento">Subir Documento:</label>
+                                <label for="documento">Subir Documento:*</label>
                                 <input type="file" id="documento" name="documento" class="btn">
                             </div>
 
