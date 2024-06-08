@@ -45,8 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt_update) {
         $stmt_update->bind_param("is", $id_asignatura, $new_subject);
         if ($stmt_update->execute()) {
+            echo '<script>alert("Se editó la asignatura con exito con exito.");</script>';
             header("Location: ../Models/add_subject.php");
-            exit();
+            
         } else {
             echo "Error al actualizar la asignatura: " . $stmt_update->error;
         }

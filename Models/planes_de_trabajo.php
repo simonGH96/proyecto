@@ -18,7 +18,8 @@ require_once '../Config/Config.php';
 
 </head>
 <?php 
-$results_per_page = 5; // Number of results per page
+$default_results_per_page = 5; // Default number of results per page
+$results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['results_per_page']) ? (int)$_GET['results_per_page'] : $default_results_per_page;
 ?>
 <body>
     <div class="row justify-content-center" id="card-content-page">
@@ -38,6 +39,15 @@ $results_per_page = 5; // Number of results per page
                             <input class="form-control me-2" type="search" name="search" placeholder="Buscar por código o nombre..." aria-label="Search">
                             <button class="btn btn-secondary" type="submit">Buscar</button></br>
                         </form>
+                        <form method="GET" action="">
+                        <label>Mostrar</label>
+                        <select name="results_per_page" class="select" aria-label="Results per page" onchange="this.form.submit()">
+                            <option value="5" <?php if ($results_per_page == 5) echo 'selected'; ?>>5</option>
+                            <option value="10" <?php if ($results_per_page == 10) echo 'selected'; ?>>10</option>
+                            <option value="20" <?php if ($results_per_page == 20) echo 'selected'; ?>>20</option>
+                        </select>
+                        <label>resultados</label>
+                        </form></br>  
                         <div class="tile">
                             <div class="tile-body">
                                 <div class="table-responsive">

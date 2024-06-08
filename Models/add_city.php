@@ -55,7 +55,7 @@ $sql = "SELECT *
         FROM ciudad_estudiante";
         
         if ($search) {
-            $sql .= " WHERE ciudad LIKE '%$search%'";
+            $sql .= " WHERE ciudad_estudiante.ciudad LIKE '%$search%'";
         }
         
 
@@ -87,11 +87,11 @@ $conn->close();
                         </div>
                     </div>
                    <!-- Button trigger modal -->
-                   <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCity">
                         Agregar Ciudad </a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="addCity" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -101,15 +101,17 @@ $conn->close();
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                <form method="POST" action="insert_city.php">
                                     <div class="form-group">
                                         <label for="wordInput">Nombre de la ciudad</label>
-                                        <input type="text" class="form-control" id="wordInput" name="wordInput" required>
+                                        <input type="text" class="form-control" id="city" name="city" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-warning">Agregar</button>
+                                    <button type="submit" class="btn btn-warning">Agregar</button>
+                                </form>
                                 </div>
                             </div>
                         </div>

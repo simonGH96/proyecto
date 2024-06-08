@@ -91,15 +91,17 @@ $conn->close();
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                <form method="POST" action="insert_transport.php">
                                     <div class="form-group">
                                         <label for="wordInput">Nombre del medio de transporte</label>
-                                        <input type="text" class="form-control" id="wordInput" name="wordInput" required>
+                                        <input type="text" class="form-control" id="transport" name="transport" required>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-warning">Agregar</button>
+                                    <button type="submit" class="btn btn-warning">Agregar</button>
+                                </form>
                                 </div>
                             </div>
                         </div>

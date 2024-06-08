@@ -17,7 +17,8 @@ if (!checkRole($currentUser, '2')) {
 }
 */
 
-$results_per_page = 5; // Number of results per page
+$default_results_per_page = 5; // Default number of results per page
+$results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['results_per_page']) ? (int)$_GET['results_per_page'] : $default_results_per_page;
 
 // Establecer la conexión a la base de datos
 $conexion = mysqli_connect("localhost", "root", "", "proyecto_consejerias");
@@ -76,6 +77,15 @@ $result = mysqli_query($conexion, $sql);
                             placeholder="Buscar por código o nombre..." aria-label="Search" value="<?php echo htmlspecialchars($search); ?>">
                         <button class="btn btn-secondary" type="submit">Buscar</button>
                     </form>
+                    <form method="GET" action="">
+                        <label>Mostrar</label>
+                        <select name="results_per_page" class="select" aria-label="Results per page" onchange="this.form.submit()">
+                            <option value="5" <?php if ($results_per_page == 5) echo 'selected'; ?>>5</option>
+                            <option value="10" <?php if ($results_per_page == 10) echo 'selected'; ?>>10</option>
+                            <option value="20" <?php if ($results_per_page == 20) echo 'selected'; ?>>20</option>
+                        </select>
+                        <label>resultados</label></br>
+                    </form> </br>  
                     <div class="tile">
                         <div class="tile-body">
                             <div class="table-responsive">
@@ -115,7 +125,7 @@ $result = mysqli_query($conexion, $sql);
                             <ul class="pagination">
                                 <?php if ($current_page > 1): ?>
                                     <li class="page-item">
-                                        <a class="page-link" href="?search=<?php echo $search; ?>&page=<?php echo $current_page - 1; ?>">Anterior</a>
+                                        <a class="page-link" href="?search=<?php echo $search; ?>&results_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page - 1; ?>">Anterior</a>
                                     </li>
                                 <?php else: ?>
                                     <li class="page-item disabled">
@@ -130,14 +140,14 @@ $result = mysqli_query($conexion, $sql);
                                         </li>
                                     <?php else: ?>
                                         <li class="page-item">
-                                            <a class="page-link" href="?search=<?php echo $search; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                                            <a class="page-link" href="?search=<?php echo $search; ?>&results_per_page=<?php echo $results_per_page; ?>&page=<?php echo $i; ?>"><?php echo $i; ?></a>
                                         </li>
                                     <?php endif; ?>
                                 <?php endfor; ?>
 
                                 <?php if ($current_page < $total_pages): ?>
                                     <li class="page-item">
-                                        <a class="page-link" href="?search=<?php echo $search; ?>&page=<?php echo $current_page + 1; ?>">Siguiente</a>
+                                        <a class="page-link" href="?search=<?php echo $search; ?>&results_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page + 1; ?>">Siguiente</a>
                                     </li>
                                 <?php else: ?>
                                     <li class="page-item disabled">
