@@ -27,6 +27,22 @@ require_once '../Config/Config.php';
                         ?>
 
                         <form action="procesar_formulario.php" method="post" enctype="multipart/form-data">
+                            <div>
+                                <?php
+                             $sql = "SELECT asignatura FROM asignatura_planes";
+                            $result = $conn->query($sql);
+
+                        // Comprobar si se encontraron filas
+                        if ($result->num_rows > 0) {
+                        // Crear la etiqueta select
+                       echo '<label for="asignatura_FK">Docente:</label>';
+                        echo '<input type="text" id="codigo" name="codigo"  value="Moncho" readonly>';
+                         }else {
+                          echo "No se encontraron resultados en la tabla.";
+                            }       
+                            ?>
+
+                            </div>
                             <div class="form-group">
                                 <label for="plan_de_trabajo">Ingresar Plan de Trabajo:</label>
                                 <textarea id="plan_de_trabajo" name="plan_de_trabajo" rows="4" cols="50"
@@ -61,7 +77,7 @@ if ($result->num_rows > 0) {
                             <div class="form-group">
                                 <label for="estudiante">Estudiante:*</label>
                                 <select id="estudiante" name="estudiante" required>
-                                <option value="">Seleccione un estudiante</option> <!-- Empty option -->
+                                    <option value="">Seleccione un estudiante</option> <!-- Empty option -->
                                     <?php
                                   if (mysqli_num_rows($resultado) > 0) {
                                      while ($fila = mysqli_fetch_assoc($resultado)) {
@@ -71,14 +87,14 @@ if ($result->num_rows > 0) {
                                         echo "<option value=''>No se encontraron estudiantes</option>";
                                     }
                                     ?>
-                                    
+
                                 </select>
                             </div>
 
                             <?php
                             mysqli_close($conn);
                             ?>
-                            
+
                             <div class="form-group">
                                 <label for="documento">Subir Documento:*</label>
                                 <input type="file" id="documento" name="documento" class="btn">

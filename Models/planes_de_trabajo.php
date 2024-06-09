@@ -56,8 +56,10 @@ $results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['result
                                         id="conceptualToolsTable" style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th>Fecha</th>
                                                 <th>Código</th>
-                                                <th>Nombre</th>
+                                                <th>Estudiante</th>
+                                                <th>Docente</th>
                                                 <th>Asignatura</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -93,10 +95,21 @@ $results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['result
                                             $start_from = ($current_page - 1) * $results_per_page;
 
                                             // Consulta para obtener los planes de trabajo con el nombre de la asignatura
-                                            $sql = "SELECT planes.id_planes, asignatura_planes.asignatura, estudiante.codigo, estudiante.nombre
-                                                    FROM planes
-                                                    INNER JOIN asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
-                                                    INNER JOIN estudiante ON planes.estudiante_FK = estudiante.codigo";
+                                            $sql = "SELECT 
+                                            planes.id_planes, planes.fecha,
+                                            asignatura_planes.asignatura, 
+                                            estudiante.codigo AS estudiante_codigo, 
+                                            estudiante.nombre AS estudiante_nombre, 
+                                            docente.nombre AS docente_nombre
+                                        FROM 
+                                            planes
+                                        INNER JOIN 
+                                            asignatura_planes ON planes.asignatura_FK = asignatura_planes.id_asignatura
+                                        INNER JOIN 
+                                            estudiante ON planes.estudiante_FK = estudiante.codigo
+                                        INNER JOIN 
+                                            docente ON planes.docente_FK = docente.codigo
+                                        ";
 
                                             if ($search) {
                                                 $sql .= " WHERE estudiante.codigo LIKE '%$search%' OR estudiante.nombre LIKE '%$search%'";
@@ -109,11 +122,13 @@ $results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['result
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
                                                     echo "<tr>";
-                                                    echo "<td>" . $row["codigo"] . "</td>";
-                                                    echo "<td>" . $row["nombre"] . "</td>";
+                                                    echo "<td>" . $row["fecha"] . "</td>";
+                                                    echo "<td>" . $row["estudiante_codigo"] . "</td>";
+                                                    echo "<td>" . $row["estudiante_nombre"] . "</td>";
+                                                    echo "<td>" . $row["docente_nombre"] . "</td>";
                                                     echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
                                                     echo "<td>";
-                                                    echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
+                                                    echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["estudiante_codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
                                                     echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
                                                     echo "</td>";
                                                     echo "</tr>";   
