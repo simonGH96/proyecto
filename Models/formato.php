@@ -36,7 +36,7 @@ require_once '../Config/Config.php';
                         if ($result->num_rows > 0) {
                         // Crear la etiqueta select
                        echo '<label for="asignatura_FK">Docente:</label>';
-                        echo '<input type="text" id="codigo" name="codigo"  value="Moncho" readonly>';
+                        echo '<input type="text" id="docente_FK" name="docente_FK"  value="' . $_SESSION['user']['username'] .'" readonly>';
                          }else {
                           echo "No se encontraron resultados en la tabla.";
                             }       

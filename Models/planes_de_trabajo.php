@@ -128,7 +128,7 @@ $results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['result
                                                     echo "<td>" . $row["docente_nombre"] . "</td>";
                                                     echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
                                                     echo "<td>";
-                                                    echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["estudiante_codigo"] . '&id_plan=' . $row["id_planes"] . '">Editar</a>';
+                                                    echo '<a class="btn" href="../Views/Editar_plan_de_trabajo.php?codigo=' . $row["estudiante_codigo"] . '&id_plan=' . $row["id_planes"] . '&asignatura='.$row["asignatura"].'">Editar</a>';
                                                     echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_planes"] . '" class="btn">Eliminar</a>';
                                                     echo "</td>";
                                                     echo "</tr>";   

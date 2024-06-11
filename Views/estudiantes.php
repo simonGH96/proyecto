@@ -17,6 +17,7 @@ if (!checkRole($currentUser, '2')) {
 }
 */
 
+
 $default_results_per_page = 5; // Default number of results per page
 $results_per_page = isset($_GET['results_per_page']) && is_numeric($_GET['results_per_page']) ? (int)$_GET['results_per_page'] : $default_results_per_page;
 
@@ -63,7 +64,15 @@ $sql .= " LIMIT $start_from, $results_per_page";
 
 $result = mysqli_query($conexion, $sql);
 ?>
-
+<script>
+        function confirmDeletion(estudianteId) {
+            if (confirm("¿Está seguro de eliminar el estudiante?")) {
+                window.location.href = "../Models/eliminar_estudiante.php?estudiante_id=" + estudianteId;
+            } else {
+                window.location.href = "../Views/estudiantes.php";
+            }
+        }
+    </script>
 <div class="row justify-content-center" id="card-content-page">
     <div class="col-10">
         <div class="card shadow mb-4">
@@ -107,7 +116,7 @@ $result = mysqli_query($conexion, $sql);
                                                 echo "<td>" . $fila["nombre"] . "</td>";
                                                 echo "<td>";
                                                 echo '<a class="btn" href="../Models/editar_estudiante.php?codigo=' . $fila["codigo"] . '">Editar</a>';
-                                                echo '<a href="../Models/eliminar_estudiante.php?estudiante_id=' . $fila["codigo"] . '" class="btn">Eliminar</a>';
+                                                echo '<a href="#" onclick="confirmDeletion(' . $fila["codigo"] . ')" class="btn">Eliminar</a>';
                                                 echo "</td>";
                                                 echo "</tr>";
                                             }

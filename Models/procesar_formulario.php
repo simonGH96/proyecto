@@ -7,7 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $planDeTrabajo = $_POST["plan_de_trabajo"];
     $asignatura = $_POST["asignatura_FK"];
     $codigoFK = $_POST["estudiante"];
-    
+    $docenteFK = $_POST["docente_FK"];
+
     // Obtener el id_asignatura correspondiente a la asignatura ingresada
     $id_asignatura = null;
     $stmt_asignatura = $conn->prepare("SELECT id_asignatura FROM asignatura_planes WHERE asignatura = ?");
@@ -20,6 +21,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $stmt_asignatura->close();
     
+    
+    // Get the id_docente corresponding for username session
+    $id_docente = null;
+    $stmt_docente = $conn->prepare("SELECT codigo FROM docente WHERE nombre = ?");
+    $stmt_docente->bind_param("s", $docenteFK);
+    $stmt_docente->execute();
+    $result_docente = $stmt_docente->get_result();
+    if ($result_docente->num_rows > 0) {
+        $row = $result_docente->fetch_assoc();
+        $id_docente = $row["codigo"];
+    }
+    $stmt_docente->close();
+    
+
     // Procesar la subida de documentos
     if ($_FILES["documento"]["error"] === UPLOAD_ERR_OK) {
         $documentoNombre = $_FILES["documento"]["name"];
@@ -27,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mover el archivo al directorio de destino
         if (move_uploaded_file($_FILES["documento"]["tmp_name"], $documentoUbicación)) {
-            $sql = "INSERT INTO planes (escribir_plan, asignatura_FK, documento, estudiante_FK) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO planes (escribir_plan, asignatura_FK, documento, estudiante_FK, docente_FK, fecha) VALUES (?, ?, ?, ?, ?, CURDATE())";
 
             // Prepara la sentencia SQL
             $stmt = $conn->prepare($sql);
 
             if ($stmt) {
                 // Asocia los parámetros con los valores del formulario
-                $stmt->bind_param("sssi", $planDeTrabajo, $id_asignatura, $documentoNombre, $codigoFK);
+                $stmt->bind_param("sssii", $planDeTrabajo, $id_asignatura, $documentoNombre, $codigoFK, $id_docente);
                 
                 // Ejecuta la consulta SQL para insertar el registro en la base de datos
                 if ($stmt->execute()) {
