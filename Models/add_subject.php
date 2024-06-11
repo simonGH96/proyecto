@@ -1,110 +1,151 @@
 <?php
-require_once '../Views/header.php';
+require_once  '../Views/header.php';
 require_once '../Config/Config.php';
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
     <title>Gestión</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="../estilo_agregar_estudiante.css">
 </head>
+
 <body>
-    
-            <div class="text-center">
-                <h3 class="mt-1 mb-3 pb-1">Agregar a la base de datos</h3>
+    <div class="row justify-content-center" id="card-content-page">
+        <div class="col-10">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h3>Gestión de asignaturas</h3>
+                </div>
+                <div class="card-body row justify-content-center" id="card-body-page">
+                    <div class="col-11">
+                        <form id="formConceptualTools" name="formConceptualTools">
+                            <div class="row justify-content-center">
+                                <div class="col-md-2">
+                                </div>
+                        </form>
+                        <div class="tile">
+                            <div class="tile-body">
+                                <nav class="navbar-light">
+                                    <div class="container-fluid">
+                                        <form class="d-flex mb-3" method="GET" action="">
+                                            <input class="form-control me-2" type="search" name="search"
+                                                placeholder="Buscar por nombre..." aria-label="Search">
+                                            <button class="btn btn-secondary" type="submit">Buscar</button>
+                                        </form>
+                                    </div>
+                                </nav></br></br>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-centered table-bordered mb-0"
+                                        id="conceptualToolsTable" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Asignatura</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
+
+                                            // Consulta para obtener los planes de trabajo con el nombre de la asignatura
+                                            $sql = "SELECT *
+                                                    FROM asignatura_planes";
+
+                                            if ($search) {
+                                                $sql .= " WHERE asignatura_planes.asignatura LIKE '%$search%'";
+                                            }
+
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo "<tr>";
+                                                    echo "<td>" . $row["asignatura"] . "</td>"; // Mostrar el nombre de la asignatura
+                                                    echo "<td>";
+                                                    echo '<a data-bs-toggle="modal" data-bs-target="#Edit_modal" class="btn" href="../Models/update_subject.php?id_asignatura=' . $row["id_asignatura"] . '">Editar</a>';
+                                                    echo '<a href="../Models/eliminar_plan.php?codigo=' . $row["id_asignatura"] . '" class="btn">Eliminar</a>';
+                                                    echo "</td>";
+                                                    echo "</tr>";   
+                                                }
+                                            } else {
+                                                echo "No hay planes de trabajo disponibles.";
+                                            }
+                                            
+                    // Cerrar la conexión a la base de datos
+                    $conn->close();
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Agregar asignatura
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar asignatura</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="insert_subject.php">
+                                        <div class="form-group">
+                                            <label for="wordInput">Nombre de la asignatura</label>
+                                            <input type="text" class="form-control" name="subject" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-warning">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--         -->
+                    <!-- Edit modal -->
+                    <div class="modal fade" id="Edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar asignatura</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="update_subject.php">
+                                    <input type="hidden" name="id_asignatura" value="<?php echo $row["id_asignatura"] ;?>">    
+                                    <div class="form-group">
+                                            <label for="wordInput">Nombre de la asignatura</label>
+                                            <input type="text" class="form-control" name="subject" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-warning">Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--         -->
+                </div>
             </div>
-    <form action="agregar_estudiante.php" method="post" class="student-form">
-        <label for="nombre">Asignatura:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <button type="submit" class="btn btn-warning">Agregar Asignatura</button>
-        
-        </br></br>
-        <label for="codigo">Código:</label>
-        <input type="text" id="codigo" name="codigo" pattern="[0-9]{10,}" title="Por favor, ingrese al menos 10 números" required>
-
-
-        <label for="es_cabeza_familia">Es Cabeza de Familia:</label>
-        <select id="es_cabeza_familia" name="es_cabeza_familia">
-            <option value="si">Sí</option>
-            <option value="no">No</option>
-        </select>
-
-        <label for="composicion_familiar">Composición Familiar:</label>
-        <textarea id="composicion_familiar" name="composicion_familiar"></textarea>
-
-        <?php
-        $sql = "SELECT ciudad FROM ciudad_estudiante";
-        $result = $conn->query($sql);
-
-// Comprobar si se encontraron filas
-if ($result->num_rows > 0) {
-    // Crear la etiqueta select
-    echo '<label for="ciudad_FK">Lugar de Procedencia:</label>';
-    echo '<select id="ciudad_FK" name="ciudad_FK">';
-    
-    // Mostrar opciones en un bucle while
-    while($row = $result->fetch_assoc()) {
-        echo '<option value="' . $row["ciudad"] . '">' . $row["ciudad"] . '</option>';
-    }
-    
-    echo '</select>';
-} else {
-    echo "No se encontraron resultados en la tabla.";
-}
-
-// Cerrar la conexión
-$conn->close();
-?>
-
-        <label for="personas_con_quien_vive">Personas con Quien Vive:</label>
-        <input min=0 type="number" id="personas_con_quien_vive" name="personas_con_quien_vive">
-
-
-        <label for="actividades_trabajo">Actividades de Trabajo:</label>
-        <input type="text" id="actividades_trabajo" name="actividades_trabajo">
-
-        <label for="actividades_interes">Actividades de Interés:</label>
-        <input type="text" id="actividades_interes" name="actividades_interes">
-
-        <label for="solicitudes_retiro_reintegro">Solicitudes de Retiro o Reintegro:</label>
-        <input min=0 type=number id="solicitudes_retiro_reintegro" name="solicitudes_retiro_reintegro"></input>
-
-        <label for="adaptacion_universidad">Adaptación a la Universidad:</label>
-        <textarea id="adaptacion_universidad" name="adaptacion_universidad"></textarea>
-
-        <label for="intereses_academicos">Intereses Académicos:</label>
-        <input type="text" id="intereses_academicos" name="intereses_academicos">
-
-        <label for="grupos_vincula">Grupos a los que se Vincula:</label>
-        <input type="text" id="grupos_vincula" name="grupos_vincula">
-
-        <label for="movilidad_estudiantil">Movilidad Estudiantil:</label>
-        <select id="movilidad_estudiantil" name="movilidad_estudiantil">
-            <option>Caminando</option>
-            <option>Transmilenio</option>
-            <option>Carro</option>
-            <option>Moto</option>
-            <option>Otro</option>
-        </select>
-
-
-        <label for="prueba_academica">Situaciones de Prueba Académica:</label>
-        <input type="text" id="prueba_academica" name="prueba_academica">
-
-        <label for="recomendaciones_consejero">Recomendaciones del Consejero:</label>
-        <textarea id="recomendaciones_consejero" name="recomendaciones_consejero"></textarea>
-        
-        <label for="semestres_transcurridos">Semestres en la universidad:</label>
-        <input min=1 type="number" id="semestres_transcurridos" name="semestres_transcurridos">
-        <br><br>
-        <button type="submit" class="btn btn-warning">Agregar Estudiante</button>
-        <button type="button" class="btn btn-warning" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>
-    </form>
-
-   
+        </div>
+    </div>
 </body>
+
 </html>

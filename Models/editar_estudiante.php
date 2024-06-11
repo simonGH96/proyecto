@@ -70,6 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_update->bind_param("ssssssssssssssss", $nuevo_codigo, $nuevo_nombre, $nuevo_es_cabeza_familia, $nueva_composicion_familiar, $id_ciudad, $nuevo_personas_con_quien_vive, $nuevo_actividades_trabajo, $nuevo_actividades_interes, $nuevo_solicitudes_retiro_reintegro, $nuevo_adaptacion_universidad, $nuevo_intereses_academicos, $nuevo_grupos_vincula, $nuevo_movilidad_estudiantil, $nuevo_prueba_academica, $nuevo_recomendaciones_consejero, $estudiante_codigo);
 
         if ($stmt_update->execute()) {
+            echo '<script>alert("Se editó el estudiante con exito.");</script>';
             echo '<script>window.location.href = "../Views/estudiantes.php";</script>';
         } else {
             echo "Error al actualizar el estudiante: " . $stmt_update->error;
@@ -85,8 +86,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Editar Estudiante</title>
     <link rel="stylesheet" type="text/css" href="../estilo_agregar_estudiante.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
 </head>
 <body>
             <div class="text-center">
@@ -99,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type = "text" id="nombre" name="nombre"value="<?php echo $estudiante['nombre']; ?>" required>
 
     <label for="codigo">Código:</label>
-    <input type="text" id="codigo" name="codigo"  pattern="[0-9]{10,}" title="Por favor, ingrese al menos 10 números"  value="<?php echo $estudiante['codigo']; ?>" required>
+    <input type="text" id="codigo" name="codigo"  value="<?php echo $estudiante['codigo']; ?>" readonly>
 
     <label for="es_cabeza_familia">¿Es cabeza de familia?</label>
     <select type="checkbox" id="es_cabeza_familia" name="es_cabeza_familia" value="<?php echo $estudiante['cabeza']; ?>">
@@ -134,18 +138,18 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-<label for="personas_con_quien_vive">Personas con quien vive:</label>
+<label for="personas_con_quien_vive">Personas con quien vive:</label></br>
 <input min=0 type="number" id="personas_con_quien_vive" name="personas_con_quien_vive" value="<?php echo $estudiante['personas_vive']; ?>" >
-
+</br>
 <label for="actividades_trabajo">Actividades de trabajo:</label>
 <input type="text" id="actividades_trabajo" name="actividades_trabajo" value="<?php echo $estudiante['trabajo']; ?>" >
 
 <label for="actividades_interes">Actividades de interés:</label>
 <input type="text" id="actividades_interes" name="actividades_interes" value="<?php echo $estudiante['interes']; ?>" >
 
-<label for="solicitudes_retiro_reintegro">Solicitudes de retiro/reintegro:</label>
+<label for="solicitudes_retiro_reintegro">Solicitudes de retiro/reintegro:</label></br>
 <input min=0 type=number id="solicitudes_retiro_reintegro" name="solicitudes_retiro_reintegro" value="<?php echo $estudiante['solicitudes']; ?>" >
-
+</br>
 <label for="adaptacion_universidad">Adaptación a la universidad:</label>
 <input type="text" id="adaptacion_universidad" name="adaptacion_universidad" value="<?php echo $estudiante['adaptacion']; ?>" >
 
@@ -170,9 +174,9 @@ $conn->close();
 <label for="recomendaciones_consejero">Recomendaciones del consejero:</label>
 <textarea id="recomendaciones_consejero" name="recomendaciones_consejero" ><?php echo $estudiante['recomendaciones']; ?></textarea>
 
-<label for="semestres_transcurridos">Semestres en la universidad:</label>
+<label for="semestres_transcurridos">Semestres en la universidad:</label></br>
         <input min=1 type="number" id="semestres_transcurridos" name="semestres_transcurridos" value="<?php echo $estudiante['semestres']; ?>">
-        <br><br>
+        </br></br>
 
     <button type="submit" class="btn btn-warning">Guardar Cambios</button>
     <button type="button" class="btn btn-warning" onclick="window.location.href='../Views/estudiantes.php'">Volver</button>

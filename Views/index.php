@@ -1,9 +1,8 @@
 <?php
 require_once '../Views/header.php';
 require_once '../Config/Config.php';
-require '../Models/actualizar_imagen.php';
-/*echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
-*/
+require_once '../Models/actualizar_imagen.php';
+//echo '<pre>'; var_dump($_SESSION); echo '</pre>'; //REMOVE THIS LINE WHEN THE DEVELOPMENT ENDS
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,9 @@ require '../Models/actualizar_imagen.php';
 </head>
 
 <body>
+
     <main>
+
     <section class="contenedor intro-UD">
         <h4 class="titulo-principal">¿Quiénes somos?</h4>
 
@@ -46,7 +47,7 @@ require '../Models/actualizar_imagen.php';
                         a los docentes y estudiantes en un camino de acompañamiento optimo. No te lo pierdas.</p>
                 </div>
             </div>
-            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && isset($_SESSION['user']['rol']) && $_SESSION['user']['rol'] === 'admin') : ?>
             <div class="actualizar-imagen">
             <form action="../Models/actualizar_imagen.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="1" > <!-- Replace 1 with actual image ID -->
@@ -70,7 +71,7 @@ require '../Models/actualizar_imagen.php';
                         </a></p>
                 </div>
             </div>
-            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true && isset($_SESSION['user']['rol']) && $_SESSION['user']['rol'] === 'admin') : ?>
             <div class="actualizar-imagen">
             <form action="../Models/actualizar_imagen.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="1" > <!-- Replace 1 with actual image ID -->

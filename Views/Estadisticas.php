@@ -5,7 +5,7 @@ if ($_SESSION['rol'] === 'admin') {
     exit();
 }*/
 require_once 'header.php';
-require_once '../Models/autenticacion2.php';
+//require_once '../Models/autenticacion2.php';
 require_once '../Controllers/pruebacontrolador.php';
 require_once '../Models/data_Students.php';
 ?>

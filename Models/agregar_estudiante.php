@@ -1,15 +1,6 @@
 <?php
-// Establece la conexión a la base de datos 
-$servername = "localhost"; // Dirección del servidor de la base de datos 
-$username_db = "root"; // Tu nombre de usuario de la base de datos
-$password_db = ""; // Tu contraseña de la base de datos
-$database = "proyecto_consejerias"; // Nombre de la base de datos
-
-$conn = new mysqli($servername, $username_db, $password_db, $database);
-// Verifica la conexión a la base de datos
-if ($conn->connect_error) {
-    die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
+require_once '../Config/Config.php';
+require_once '../Views/header.php';
 
 // Obtiene los datos del formulario
 $nombre = $_POST["nombre"];
@@ -28,6 +19,8 @@ $movilidad_estudiantil = $_POST["movilidad_estudiantil"];
 $prueba_academica = $_POST["prueba_academica"];
 $recomendaciones_consejero = $_POST["recomendaciones_consejero"];
 $semestres_transcurridos = $_POST["semestres_transcurridos"];
+
+var_dump($codigo);
 
 // Obtener el id_ciudad correspondiente a la ciudad ingresada
 $id_ciudad = null;
@@ -53,7 +46,7 @@ $stmt = $conn->prepare($sql);
 
 if ($stmt) {
     // Asocia los parámetros con los valores del formulario
-    $stmt->bind_param("ssssssssssssssss", $nombre, $codigo,$id_ciudad, $es_cabeza_familia, $composicion_familiar, $personas_con_quien_vive, $actividades_trabajo, $actividades_interes, $solicitudes_retiro_reintegro, $adaptacion_universidad, $intereses_academicos, $grupos_vincula, $movilidad_estudiantil, $prueba_academica, $recomendaciones_consejero, $semestres_transcurridos);
+    $stmt->bind_param("ssssssssssssssss", $nombre, $codigo, $id_ciudad, $es_cabeza_familia, $composicion_familiar, $personas_con_quien_vive, $actividades_trabajo, $actividades_interes, $solicitudes_retiro_reintegro, $adaptacion_universidad, $intereses_academicos, $grupos_vincula, $movilidad_estudiantil, $prueba_academica, $recomendaciones_consejero, $semestres_transcurridos);
 
     // Ejecuta la consulta SQL para insertar el registro en la base de datos
     if ($stmt->execute()) {

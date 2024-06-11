@@ -27,6 +27,22 @@ require_once '../Config/Config.php';
                         ?>
 
                         <form action="procesar_formulario.php" method="post" enctype="multipart/form-data">
+                            <div>
+                                <?php
+                             $sql = "SELECT asignatura FROM asignatura_planes";
+                            $result = $conn->query($sql);
+
+                        // Comprobar si se encontraron filas
+                        if ($result->num_rows > 0) {
+                        // Crear la etiqueta select
+                       echo '<label for="asignatura_FK">Docente:</label>';
+                        echo '<input type="text" id="docente_FK" name="docente_FK"  value="' . $_SESSION['user']['username'] .'" readonly>';
+                         }else {
+                          echo "No se encontraron resultados en la tabla.";
+                            }       
+                            ?>
+
+                            </div>
                             <div class="form-group">
                                 <label for="plan_de_trabajo">Ingresar Plan de Trabajo:</label>
                                 <textarea id="plan_de_trabajo" name="plan_de_trabajo" rows="4" cols="50"
@@ -41,8 +57,10 @@ require_once '../Config/Config.php';
 // Comprobar si se encontraron filas
 if ($result->num_rows > 0) {
     // Crear la etiqueta select
-    echo '<label for="asignatura_FK">Asignatura:</label>';
+    echo '<label for="asignatura_FK">Asignatura:*</label>';
     echo '<select id="asignatura_FK" name="asignatura_FK">';
+    echo '<option value="">Seleccione una asignatura</option>'; // Empty option
+
     
     // Mostrar opciones en un bucle while
     while($row = $result->fetch_assoc()) {
@@ -57,8 +75,9 @@ if ($result->num_rows > 0) {
 ?>
 
                             <div class="form-group">
-                                <label for="estudiante">Estudiante:</label>
+                                <label for="estudiante">Estudiante:*</label>
                                 <select id="estudiante" name="estudiante" required>
+                                    <option value="">Seleccione un estudiante</option> <!-- Empty option -->
                                     <?php
                                   if (mysqli_num_rows($resultado) > 0) {
                                      while ($fila = mysqli_fetch_assoc($resultado)) {
@@ -68,7 +87,7 @@ if ($result->num_rows > 0) {
                                         echo "<option value=''>No se encontraron estudiantes</option>";
                                     }
                                     ?>
-                                    
+
                                 </select>
                             </div>
 
@@ -77,7 +96,7 @@ if ($result->num_rows > 0) {
                             ?>
 
                             <div class="form-group">
-                                <label for="documento">Subir Documento:</label>
+                                <label for="documento">Subir Documento:*</label>
                                 <input type="file" id="documento" name="documento" class="btn">
                             </div>
 

@@ -12,6 +12,7 @@
     <title>Iniciar Sesión</title>
     </head>
 <body>
+
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -40,11 +41,12 @@
                         </div>
                         <div class="text-center pt-1 mb-5 pb-1">
                             <button class="btn btn-block gradient-custom-2 mb-3" type="submit" id="ButtonLogin">Ingresar</button>
+                        </form>
                             <a class="text-muted" href="resetPassword.php">¿Olvidaste tú contraseña?</br></a>
                             <a class="text-muted" href="../Models/registro.php">Registrarse</a>
                         </div>
                         
-                    </form>
+                    
 
                 </div>
                 </div>
